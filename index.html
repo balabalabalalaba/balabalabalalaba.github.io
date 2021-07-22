@@ -170,7 +170,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>我在本科期间需要完成一个python项目，现在到了最后的一步了，为了让我写的程序能够被他人继续使用下去，为自己写的程序添加文本说明是相当有必要的。我采用Sphinx自动生成文档，写这个博客的目的其一是记录自己的操作，万一哪一天我还能用得上呢，其二是因为我无法根据他人写的博客实现我的目的（无法重复出来），故记录于此以便有和我共同需求的小伙伴们使用。</p>
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>我在本科期间需要完成一个python项目，现在到了最后的一步了，为了让我写的程序能够被他人继续使用下去，为自己写的程序添加文本说明是相当有必要的。我采用Sphinx自动生成文档，写这个博客的目的其一是记录自己的操作，万一哪一天我还能用得上呢，其二是因为我无法根据他人写的博客实现我的目的（无法重复出来），故记录于此以便有和我共同需求的小伙伴们使用。本文主要参考博客为<a target="_blank" rel="noopener" href="https://xercis.blog.csdn.net/article/details/103970663">这个</a>.</p>
+<h1 id="安装Sphinx"><a href="#安装Sphinx" class="headerlink" title="安装Sphinx"></a>安装Sphinx</h1><p>不管你是什么系统，请先安装conda，安装conda的教程网上很多，如果我有时间也会尝试写一个，虽然可以不通过conda安装sphinx，但conda确实是一个管理软件包的好东西，而且非常方便，如果是经常要用到python编程的话，conda多半都是必不可少的，我也相信能够看到这个博客的人多半也安装了conda。当你有conda的时候，进入一个你想安装sphinx的虚拟环境（关于虚拟环境的博客以后再写吧，网上也有不少介绍），键入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install sphinx</span><br></pre></td></tr></table></figure>
+
+<p>稍等片刻就安装完成了。</p>
+<h1 id="文件夹说明"><a href="#文件夹说明" class="headerlink" title="文件夹说明"></a>文件夹说明</h1><p>以下是我的文件夹目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Doc</span><br><span class="line">├── bicks</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>Doc/</code>是我们希望生成文档的位置，<code>bicks/</code>是一个python程序包（这就是我和网上教程对不上的关键，网上的教程只适用于普通的python脚本，不能用于程序包，但一般希望自己的程序能够有个说明文档的时候，这个程序往往对应着一个包），我们就是要生成这个程序包的相关文档。</p>
+<h1 id="自动生成文档"><a href="#自动生成文档" class="headerlink" title="自动生成文档"></a>自动生成文档</h1><p>进入该文件夹，在该文件夹打开终端（windows系统尝试用git bash），切换到安装sphinx的虚拟环境，然后输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sphinx-quickstart</span><br></pre></td></tr></table></figure>
+
+<p>开始初始化，根据提示输入相应的信息即可完成初始化。完成后，你的目录应该是类似这样的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Doc</span><br><span class="line">│   ├── Makefile</span><br><span class="line">│   ├── build</span><br><span class="line">│   ├── make.bat</span><br><span class="line">│   └── <span class="built_in">source</span></span><br><span class="line">│       ├── _static</span><br><span class="line">│       ├── _templates</span><br><span class="line">│       ├── conf.py</span><br><span class="line">│       └── index.rst</span><br><span class="line">├── bicks</span><br></pre></td></tr></table></figure>
+
+<p>今天先到这里吧，有点困了，睡觉。</p>
 
       
 
