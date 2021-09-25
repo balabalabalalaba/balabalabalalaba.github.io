@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://cwdreams.top">
-  <title>CurioDream</title>
+  <title>Archives: 2021/9 | CurioDream</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="CurioDream">
-<meta property="og:url" content="http://cwdreams.top/index.html">
+<meta property="og:url" content="http://cwdreams.top/archives/2021/09/index.html">
 <meta property="og:site_name" content="CurioDream">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="xie chongwu">
@@ -150,39 +150,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-用密度矩阵描述原子对光的吸收" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/096ff645d2.html" class="archive-article-date">
+  	<time datetime="2021-09-25T02:11:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-25</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/096ff645d2.html">用密度矩阵描述原子对光的吸收</a>
+      <a class="archive-article-title" href="/2021/096ff645d2.html">用密度矩阵描述原子对光的吸收</a>
     </h1>
   
 
-        
-        <a href="/2021/096ff645d2.html" class="archive-article-date">
-  	<time datetime="2021-09-25T02:11:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="介质对光的吸收与密度矩阵"><a href="#介质对光的吸收与密度矩阵" class="headerlink" title="介质对光的吸收与密度矩阵"></a>介质对光的吸收与密度矩阵</h1><p>​        一个是经典宏观的行为，一个是量子力学的语言，这两者如何联系起来呢？我也不是很清楚，但正是因为我不清楚，所以我写下了这篇博客 ，其目的就是为了探究两者的关系。好消息是这两者一定是有很简单的联系的，我需要将其挖掘出来。</p>
-<h2 id="密度矩阵"><a href="#密度矩阵" class="headerlink" title="密度矩阵"></a>密度矩阵</h2><p>​        这里有一堆由相同原子构成的介质，或者是气体，每个原子都会处于不同的状态，换句话说，处于不同状态的原子的个数是不同的，也就是占的比例是不同的，这是我们从单个原子的角度来看的思考方式，如果我们换个角度来思考，将整个气体看成是一个系统，那么我们描述这个系统的状态就可以用概率分布来描述，在量子力学里面这个分布函数就是密度矩阵。知道了密度矩阵，我们就可以求解整个系综的平均值，而经典的宏观行为一般正是对应着微观世界的平均效应，说不定这样我们就可以将密度矩阵与介质对光的吸收联系在一起了。</p>
-<p>​        我们以原子的能级为例引入密度矩阵，设原子能级（能量的本征态）为:<br>$$<br>\ket{1}, \ket{2},…,\ket{i},…<br>$$<br>每个原子的状态将是上述这些本征态的线性组合，设有$N_k$个原子的状态为$\ket{\psi_k}$，其可以写为：<br>$$<br>\ket{\psi_k} = \sum_i {c^{(i)}<em>k \ket{i}},<br>$$<br>那么整个系统对于某一物理量$A$的系综平均就可以写为：<br>$$<br>\left&lt; A \right&gt; = \dfrac{1}{N}\sum_k N</em>{k}\langle \psi <em>{k}\left| A\right| \psi <em>{k}\rangle = \dfrac{1}{N}\sum</em>{i,j,k}N</em>{k}c^{(j)}<em>k \left(c^{(i)}<em>k\right)^{*}\bra{i}A\ket{j}<br>$$<br>定义密度矩阵的矩阵元为：<br>$$<br>\rho</em>{ij} =\sum</em>{k}\dfrac{N_k}{N}c^{(i)}<em>k \left(c^{(j)}<em>k\right)^{*}<br>$$<br>容易发现$\rho</em>{ij} = \left(\rho</em>{ji}\right)^{*}$，这说明我们定义的密度矩阵是一个厄米矩阵或者称为厄米算符。那么物理量$A$的系综平均就可以写为：<br>$$<br>\left&lt; A \right&gt; = \sum_{i,j}\rho_{ji}\bra{i}A\ket{j} = \sum_{i,j}\bra{j}\rho\ket{i}\bra{i}A\ket{j} = \Tr{[\rho A]}.<br>$$<br>​        我猜我们所需要的密度矩阵的知识就是这些，这使得我们在原子能级与宏观平均量之间搭建了一座桥梁，只要我们知道这个系统的密度矩阵，我们就可以得到这个系统关于任何可观测量的系综平均值。接下来便是寻找反映吸收的物理量。</p>
-<h2 id="极化与吸收"><a href="#极化与吸收" class="headerlink" title="极化与吸收"></a>极化与吸收</h2><p>经典电动力学中的极化与吸收是联系在一起的，为此我们考虑“加法形式”的本构关系：<br>$$<br>\bold{D} = \varepsilon_0\bold{E}+ \bold{P} = (\varepsilon_0  +\eta)\bold{E} = \varepsilon_0\varepsilon_r\bold{E},<br>$$<br>我称$\eta$为极化率，我们设电场的形式为（我们现在考虑简单的线偏振）：<br>$$<br>E = \Re[ E_0 e^{i(kr-\omega t)}],<br>$$<br>其振幅为$E_0$，其中：<br>$$<br>\begin{align}<br>    k &amp;= \dfrac{\omega}{c}n,\<br>  n = n’ + i n’’ &amp;= \sqrt{1 + \frac{\eta}{\varepsilon_0}} \approx 1 + \dfrac{1}{2}\frac{\eta}{\varepsilon_0},<br>\end{align}<br>$$<br>所以，当电场在介质中传播到$r=l$时，其振幅衰减为：<br>$$<br>E_l =E_0e^{(-\frac{\eta’’ \omega}{2\varepsilon_0c}l)}<br>$$<br>其中$\eta ‘’$为$\eta$的虚部，于是光强就衰减为（光强正比于场强的平方）：<br>$$<br>I_l = I_0e^{(-\alpha l)},<br>$$<br>其中$\alpha$为吸收系数，其定义为：<br>$$<br>\alpha =\frac{\eta’’ \omega}{\varepsilon_0c},<br>$$<br>我们成功的将极化率与吸收联系在一起了。</p>
-<h2 id="系统吸收率与密度矩阵的联系"><a href="#系统吸收率与密度矩阵的联系" class="headerlink" title="系统吸收率与密度矩阵的联系"></a>系统吸收率与密度矩阵的联系</h2><p>​        当我们将极化率与密度矩阵联系在一起的时候，目标就会被实现。我们考虑一束平面线偏振光：<br>$$<br>E = \Re[ E_0 e^{i(kr-\omega t)}],<br>$$<br>其作用于介质，假设光的偏振和频率特性，导致其选择定则其只在$\ket{1},\ket{2}$两个态上发生跃迁，也就是说原子的电偶极矩$\mu$只有$\mu_{12},\mu_{21}\neq0$。整个系统的电极矩用系综平均可以写为：<br>$$<br>P = N \left&lt;\mu\right&gt; = \Tr[\rho \mu] = N\left( \rho_{12} \mu_{21} + \rho_{21} \mu_{12} \right),<br>$$<br>在光与原子的相互作用中，我们一般采用interaction picture。也就是说令：<br>$$<br>\begin{align}<br>\rho_{12} &amp;= \sigma_{12}e^{i\omega t},\<br>\rho_{21} &amp;= \sigma_{21}e^{-i\omega t},<br>\end{align}<br>$$<br>带入可得：<br>$$<br>\begin{align}<br>P &amp;= N\left( \left( \left( \mu _{21}\sigma _{12}\right)^{\ast }+\left( \mu _{21}\sigma _{12}\right)\right) \cos \omega t+i\left( \left( \mu _{21}\sigma _{12}\right)-\left( \mu _{21}\sigma _{12}\right)^{\ast }\right) \sin \omega t\right)\<br>&amp;=2N\left(\Re\left( \mu _{21}\sigma _{12}\right) \cos \omega t+\Im \left( \mu _{21}\sigma <em>{12}\right) \sin \omega t\right)<br>\end{align}<br>$$<br>与此同时：<br>$$<br>P=\Re(\eta  E_0 e^{i(kr-\omega t)})=\eta ‘ E</em>{0}\cos \omega <em>{p}t + \eta ‘’E</em>{0}\sin \omega <em>{p}t<br>$$<br>于是我们得到：<br>$$<br>\eta ‘’ =\frac{2N}{E</em>{0}}\Im \left( \mu _{21}\sigma <em>{12}\right)<br>$$<br>电场我们用拉比频率表示：<br>$$<br>E_0 = \Omega \hbar/\mu</em>{21}<br>$$<br>那么吸收率就可以表示为：<br>$$<br>\alpha =\frac{\eta’’ \omega}{\varepsilon_0c} =\frac{2N\mu _{21}^2\omega}{\Omega \hbar\varepsilon_0c}\Im \left( \sigma <em>{12}\right)<br>$$<br>其中我假设了$\mu</em>{21}$为实数（也许可以证明，但我还不会）。那么光强的衰减可以表示为（Beer’s law）：<br>$$<br>I_l = I_0e^{(-\alpha l)}.<br>$$<br>大功告成。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -194,411 +189,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/096ff645d2.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-使用Sphinx4根据python的注释自动生成文档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/0744296.html">使用Sphinx4根据python的注释自动生成文档</a>
-    </h1>
-  
-
-        
-        <a href="/2021/0744296.html" class="archive-article-date">
-  	<time datetime="2021-07-22T15:15:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>我在本科期间需要完成一个python项目，现在到了最后的一步了，为了让我写的程序能够被他人继续使用下去，为自己写的程序添加文本说明是相当有必要的。我采用Sphinx自动生成文档，写这个博客的目的其一是记录自己的操作，万一哪一天我还能用得上呢，其二是因为我无法根据他人写的博客实现我的目的（无法重复出来），故记录于此以便有和我共同需求的小伙伴们使用。本文主要参考博客为<a target="_blank" rel="noopener" href="https://xercis.blog.csdn.net/article/details/103970663">这个</a>.</p>
-        
-          <a class="article-more-a" href="/2021/0744296.html#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sphinx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/0744296.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Docker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/0740991.html">Docker</a>
-    </h1>
-  
-
-        
-        <a href="/2021/0740991.html" class="archive-article-date">
-  	<time datetime="2021-07-20T06:55:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><p>当我们想发布自己的python程序的时候，一般就会用conda以及pip，但是我们想将开发环境一起发布的时候就不能通过这种途径了，一种方法就是通过虚拟机，但虚拟机过于庞大，不便于操作。一种轻量级的技术——容器，可以实现我们的目的。Docker便是容器的代表。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/0740991.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-git-is-a-good-tool" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/079511.html">git is a good tool</a>
-    </h1>
-  
-
-        
-        <a href="/2021/079511.html" class="archive-article-date">
-  	<time datetime="2021-07-08T05:58:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="git是一个很好用的工具"><a href="#git是一个很好用的工具" class="headerlink" title="git是一个很好用的工具"></a>git是一个很好用的工具</h1><p>git最常见的用处就是版本控制，当你将其和GitHub结合起来的时候，和小伙伴们一切协同作业将变得非常方便且有趣。值得一提的是，git是用命令行操作的软件，所以配合一个好的终端可以让你作业得非常高效，<a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2">这里给出git官网的说明书。</a>官网的第一手资料在绝大多数情况下都是最好的，喜欢感兴趣的同学多多阅读一下，这个博客主要起一个宣传的作用。</p>
-<p>去试一试嘛，用当你学会用git进行版本控制的时候，你一定会体会到他的好处的，可不要小看了版本控制。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/079511.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-How-do-I-pack-my-python-files" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/0619704.html">How do I pack my python files?</a>
-    </h1>
-  
-
-        
-        <a href="/2021/0619704.html" class="archive-article-date">
-  	<time datetime="2021-06-29T08:57:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="python文件打包教程"><a href="#python文件打包教程" class="headerlink" title="python文件打包教程"></a>python文件打包教程</h1><p>本文的内容源自于网络的整理。因为最近的项目涉及到python文件的打包，所以在网上找了教程并整理于此，日后我肯定还会用到，但那时候我一定已经忘记了吧，所以先记录在我的博客上。在python官网上有超级详细的打包教程，<a target="_blank" rel="noopener" href="https://packaging.python.org/tutorials/packaging-projects/">大家请点击这里</a>，通过官网上的教程，大家可以把自己的包裹上传到testpypi上面，然后就可以通过pip安装自己的包裹了，但好像也就只能自己安装，所以是一个测试报告的好途径。当测试完成后，我们就可以上传到正式的pypi上面了，步骤就大同小异了。</p>
-        
-          <a class="article-more-a" href="/2021/0619704.html#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/0619704.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/0616107.html">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2021/0616107.html" class="archive-article-date">
-  	<time datetime="2021-06-23T08:29:07.979Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-        
-          <a class="article-more-a" href="/2021/0616107.html#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/0616107.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -620,9 +223,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
