@@ -176,36 +176,26 @@
       
         <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>我在本科期间需要完成一个python项目，现在到了最后的一步了，为了让我写的程序能够被他人继续使用下去，为自己写的程序添加文本说明是相当有必要的。我采用Sphinx自动生成文档，写这个博客的目的其一是记录自己的操作，万一哪一天我还能用得上呢，其二是因为我无法根据他人写的博客实现我的目的（无法重复出来），故记录于此以便有和我共同需求的小伙伴们使用。本文主要参考博客为<a target="_blank" rel="noopener" href="https://xercis.blog.csdn.net/article/details/103970663">这个</a>.</p>
 <span id="more"></span>
-
 <h1 id="安装Sphinx"><a href="#安装Sphinx" class="headerlink" title="安装Sphinx"></a>安装Sphinx</h1><p>不管你是什么系统，请先安装conda，安装conda的教程网上很多，如果我有时间也会尝试写一个，虽然可以不通过conda安装sphinx，但conda确实是一个管理软件包的好东西，而且非常方便，如果是经常要用到python编程的话，conda多半都是必不可少的，我也相信能够看到这个博客的人多半也安装了conda。当你有conda的时候，进入一个你想安装sphinx的虚拟环境（关于虚拟环境的博客以后再写吧，网上也有不少介绍），键入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install sphinx</span><br></pre></td></tr></table></figure>
-
 <p>稍等片刻就安装完成了。</p>
 <h1 id="文件夹说明"><a href="#文件夹说明" class="headerlink" title="文件夹说明"></a>文件夹说明</h1><p>以下是我的文件夹目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Doc</span><br><span class="line">├── bicks</span><br></pre></td></tr></table></figure>
-
 <p>其中<code>Doc/</code>是我们希望生成文档的位置，<code>bicks/</code>是一个python程序包（这就是我和网上教程对不上的关键，网上的教程只适用于普通的python脚本，不能用于程序包，但一般希望自己的程序能够有个说明文档的时候，这个程序往往对应着一个包），我们就是要生成这个程序包的相关文档。</p>
 <h1 id="自动生成文档"><a href="#自动生成文档" class="headerlink" title="自动生成文档"></a>自动生成文档</h1><p>进入<code>Doc/</code>，在该文件夹打开终端（windows系统尝试用git bash），切换到安装sphinx的虚拟环境，然后输入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sphinx-quickstart</span><br></pre></td></tr></table></figure>
-
 <p>开始初始化，根据提示输入相应的信息即可完成初始化。完成后，你的目录应该是类似这样的：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Doc</span><br><span class="line">│   ├── Makefile</span><br><span class="line">│   ├── build</span><br><span class="line">│   ├── make.bat</span><br><span class="line">│   └── <span class="built_in">source</span></span><br><span class="line">│       ├── _static</span><br><span class="line">│       ├── _templates</span><br><span class="line">│       ├── conf.py</span><br><span class="line">│       └── index.rst</span><br><span class="line">├── bicks</span><br></pre></td></tr></table></figure>
-
 <p>我们需要简单的配置一下位于<code>./Doc/source/conf.py</code>的<code>conf.py</code>文件，将被注释的</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import os</span></span><br><span class="line"><span class="comment"># import sys</span></span><br><span class="line"><span class="comment"># sys.path.insert(0, os.path.abspath(&#x27;.&#x27;))</span></span><br></pre></td></tr></table></figure>
-
 <p>修改为</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.insert(<span class="number">0</span>, os.path.abspath(<span class="string">&#x27;../..&#x27;</span>))</span><br></pre></td></tr></table></figure>
-
 <p>其中最后一栏就是指定python包所在的文件夹（注意：是python包所在的文件夹，不是python包本身），然后将配置文件（即<code>conf.py</code>）中的<code>extensions</code>修改为：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">extensions = [</span><br><span class="line">    <span class="string">&#x27;sphinx.ext.autodoc&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sphinx.ext.napoleon&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sphinx.ext.doctest&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sphinx.ext.intersphinx&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sphinx.ext.todo&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sphinx.ext.coverage&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sphinx.ext.mathjax&#x27;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
 <p>只有做了这样的修改，Sphinx才能够认识你的注释，然后保存退出。在<code>Doc/</code>处打开终端，键入<code>sphinx-apidoc -o source ../bicks</code>这是生成API文档的命令，后面的<code>../bicks</code>是python包的位置，换成相应的命名就OK了。最后使用命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make html</span><br></pre></td></tr></table></figure>
-
 <p>这个时候，文件夹的结构应当变为类似这样的结构：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Doc</span><br><span class="line">│   ├── Makefile</span><br><span class="line">│   ├── build</span><br><span class="line">│   │   ├── doctrees</span><br><span class="line">│   │   │   ├── bicks.doctree</span><br><span class="line">│   │   │   ├── environment.pickle</span><br><span class="line">│   │   │   ├── index.doctree</span><br><span class="line">│   │   │   └── modules.doctree</span><br><span class="line">│   │   └── html</span><br><span class="line">│   │       ├── _sources</span><br><span class="line">│   │       │   ├── bicks.rst.txt</span><br><span class="line">│   │       │   ├── index.rst.txt</span><br><span class="line">│   │       │   └── modules.rst.txt</span><br><span class="line">│   │       ├── _static</span><br><span class="line">│   │       │   ├── alabaster.css</span><br><span class="line">│   │       │   ├── basic.css</span><br><span class="line">│   │       │   ├── custom.css</span><br><span class="line">│   │       │   ├── doctools.js</span><br><span class="line">│   │       │   ├── documentation_options.js</span><br><span class="line">│   │       │   ├── file.png</span><br><span class="line">│   │       │   ├── jquery-3.5.1.js</span><br><span class="line">│   │       │   ├── jquery.js</span><br><span class="line">│   │       │   ├── language_data.js</span><br><span class="line">│   │       │   ├── minus.png</span><br><span class="line">│   │       │   ├── plus.png</span><br><span class="line">│   │       │   ├── pygments.css</span><br><span class="line">│   │       │   ├── searchtools.js</span><br><span class="line">│   │       │   ├── underscore-1.13.1.js</span><br><span class="line">│   │       │   └── underscore.js</span><br><span class="line">│   │       ├── bicks.html</span><br><span class="line">│   │       ├── genindex.html</span><br><span class="line">│   │       ├── index.html</span><br><span class="line">│   │       ├── modules.html</span><br><span class="line">│   │       ├── objects.inv</span><br><span class="line">│   │       ├── py-modindex.html</span><br><span class="line">│   │       ├── search.html</span><br><span class="line">│   │       └── searchindex.js</span><br><span class="line">│   ├── make.bat</span><br><span class="line">│   └── <span class="built_in">source</span></span><br><span class="line">│       ├── _static</span><br><span class="line">│       ├── _templates</span><br><span class="line">│       ├── bicks.rst</span><br><span class="line">│       ├── conf.py</span><br><span class="line">│       ├── index.rst</span><br><span class="line">│       └── modules.rst</span><br><span class="line">├── bicks</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>注意到<code>bulid</code>文件夹中多了不少东西，<code>./doc/bulid/html/</code>中就有我们生成的API文档，点击这个文件夹中的<code>bicks.html</code>即可浏览API文档（bicks是python包的名字，换成你自己的）。以后有时间了再写一下模板的事情吧。</p>
 
       
@@ -469,19 +459,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">sphinx</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">quantum</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">sphinx</a>
               </li>
             
             <div class="clearfix"></div>
