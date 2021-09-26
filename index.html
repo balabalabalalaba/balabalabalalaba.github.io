@@ -176,63 +176,9 @@
       
         <h1 id="介质对光的吸收与密度矩阵">介质对光的吸收与密度矩阵</h1>
 <p>​ 一个是经典宏观的行为，一个是量子力学的语言，这两者如何联系起来呢？我也不是很清楚，但正是因为我不清楚，所以我写下了这篇博客 ，其目的就是为了探究两者的关系。好消息是这两者一定是有很简单的联系的，我需要将其挖掘出来。</p>
-<h2 id="密度矩阵">密度矩阵</h2>
-<p>​ 这里有一堆由相同原子构成的介质，或者是气体，每个原子都会处于不同的状态，换句话说，处于不同状态的原子的个数是不同的，也就是占的比例是不同的，这是我们从单个原子的角度来看的思考方式，如果我们换个角度来思考，将整个气体看成是一个系统，那么我们描述这个系统的状态就可以用概率分布来描述，在量子力学里面这个分布函数就是密度矩阵。知道了密度矩阵，我们就可以求解整个系综的平均值，而经典的宏观行为一般正是对应着微观世界的平均效应，说不定这样我们就可以将密度矩阵与介质对光的吸收联系在一起了。</p>
-<p>​ 我们以原子的能级为例引入密度矩阵，设原子能级（能量的本征态）为: <span class="math display">\[
-\ket{1}, \ket{2},...,\ket{i},...
-\]</span> 每个原子的状态将是上述这些本征态的线性组合，设有<span class="math inline">\(N_k\)</span>个原子的状态为<span class="math inline">\(\ket{\psi_k}\)</span>，其可以写为： <span class="math display">\[
-\ket{\psi_k} = \sum_i {c^{(i)}_k \ket{i}},
-\]</span> 那么整个系统对于某一物理量<span class="math inline">\(A\)</span>的系综平均就可以写为： <span class="math display">\[
-\left&lt; A \right&gt; = \dfrac{1}{N}\sum_k N_{k}\langle \psi _{k}\left| A\right| \psi _{k}\rangle = \dfrac{1}{N}\sum_{i,j,k}N_{k}c^{(j)}_k \left(c^{(i)}_k\right)^{*}\bra{i}A\ket{j}
-\]</span> 定义密度矩阵的矩阵元为： <span class="math display">\[
-\rho_{ij} =\sum_{k}\dfrac{N_k}{N}c^{(i)}_k \left(c^{(j)}_k\right)^{*}
-\]</span> 容易发现<span class="math inline">\(\rho_{ij} = \left(\rho_{ji}\right)^{*}\)</span>，这说明我们定义的密度矩阵是一个厄米矩阵或者称为厄米算符。那么物理量<span class="math inline">\(A\)</span>的系综平均就可以写为： <span class="math display">\[
-\left&lt; A \right&gt; = \sum_{i,j}\rho_{ji}\bra{i}A\ket{j} = \sum_{i,j}\bra{j}\rho\ket{i}\bra{i}A\ket{j} = \Tr{[\rho A]}.
-\]</span> ​ 我猜我们所需要的密度矩阵的知识就是这些，这使得我们在原子能级与宏观平均量之间搭建了一座桥梁，只要我们知道这个系统的密度矩阵，我们就可以得到这个系统关于任何可观测量的系综平均值。接下来便是寻找反映吸收的物理量。</p>
-<h2 id="极化与吸收">极化与吸收</h2>
-<p>经典电动力学中的极化与吸收是联系在一起的，为此我们考虑“加法形式”的本构关系： <span class="math display">\[
-\bold{D} = \varepsilon_0\bold{E}+ \bold{P} = (\varepsilon_0  +\eta)\bold{E} = \varepsilon_0\varepsilon_r\bold{E},
-\]</span> 我称<span class="math inline">\(\eta\)</span>为极化率，我们设电场的形式为（我们现在考虑简单的线偏振）： <span class="math display">\[
-E = \Re[ E_0 e^{i(kr-\omega t)}],
-\]</span> 其振幅为<span class="math inline">\(E_0\)</span>，其中： <span class="math display">\[
-\begin{align}
-    k &amp;= \dfrac{\omega}{c}n,\\
-  n = n&#39; + i n&#39;&#39; &amp;= \sqrt{1 + \frac{\eta}{\varepsilon_0}} \approx 1 + \dfrac{1}{2}\frac{\eta}{\varepsilon_0},
-\end{align}
-\]</span> 所以，当电场在介质中传播到<span class="math inline">\(r=l\)</span>时，其振幅衰减为： <span class="math display">\[
-E_l =E_0e^{(-\frac{\eta&#39;&#39; \omega}{2\varepsilon_0c}l)}
-\]</span> 其中<span class="math inline">\(\eta &#39;&#39;\)</span>为<span class="math inline">\(\eta\)</span>的虚部，于是光强就衰减为（光强正比于场强的平方）： <span class="math display">\[
-I_l = I_0e^{(-\alpha l)},
-\]</span> 其中<span class="math inline">\(\alpha\)</span>为吸收系数，其定义为： <span class="math display">\[
-\alpha =\frac{\eta&#39;&#39; \omega}{\varepsilon_0c},
-\]</span> 我们成功的将极化率与吸收联系在一起了。</p>
-<h2 id="系统吸收率与密度矩阵的联系">系统吸收率与密度矩阵的联系</h2>
-<p>​ 当我们将极化率与密度矩阵联系在一起的时候，目标就会被实现。我们考虑一束平面线偏振光： <span class="math display">\[
-E = \Re[ E_0 e^{i(kr-\omega t)}],
-\]</span> 其作用于介质，假设光的偏振和频率特性，导致其选择定则其只在<span class="math inline">\(\ket{1},\ket{2}\)</span>两个态上发生跃迁，也就是说原子的电偶极矩<span class="math inline">\(\mu\)</span>只有<span class="math inline">\(\mu_{12},\mu_{21}\neq0\)</span>。整个系统的电极矩用系综平均可以写为： <span class="math display">\[
-P = N \left&lt;\mu\right&gt; = \Tr[\rho \mu] = N\left( \rho_{12} \mu_{21} + \rho_{21} \mu_{12} \right),
-\]</span> 在光与原子的相互作用中，我们一般采用interaction picture。也就是说令： <span class="math display">\[
-\begin{align}
-\rho_{12} &amp;= \sigma_{12}e^{i\omega t},\\
-\rho_{21} &amp;= \sigma_{21}e^{-i\omega t},
-\end{align}
-\]</span> 带入可得： <span class="math display">\[
-\begin{align}
-P &amp;= N\left( \left( \left( \mu _{21}\sigma _{12}\right)^{\ast }+\left( \mu _{21}\sigma _{12}\right)\right) \cos \omega t+i\left( \left( \mu _{21}\sigma _{12}\right)-\left( \mu _{21}\sigma _{12}\right)^{\ast }\right) \sin \omega t\right)\\
-&amp;=2N\left(\Re\left( \mu _{21}\sigma _{12}\right) \cos \omega t+\Im \left( \mu _{21}\sigma _{12}\right) \sin \omega t\right)
-\end{align}
-\]</span> 与此同时： <span class="math display">\[
-P=\Re(\eta  E_0 e^{i(kr-\omega t)})=\eta &#39; E_{0}\cos \omega _{p}t + \eta &#39;&#39;E_{0}\sin \omega _{p}t
-\]</span> 于是我们得到： <span class="math display">\[
-\eta &#39;&#39; =\frac{2N}{E_{0}}\Im \left( \mu _{21}\sigma _{12}\right)
-\]</span> 电场我们用拉比频率表示： <span class="math display">\[
-E_0 = \Omega \hbar/\mu_{21}
-\]</span> 那么吸收率就可以表示为： <span class="math display">\[
-\alpha =\frac{\eta&#39;&#39; \omega}{\varepsilon_0c} =\frac{2N\mu _{21}^2\omega}{\Omega \hbar\varepsilon_0c}\Im \left( \sigma _{12}\right)
-\]</span> 其中我假设了<span class="math inline">\(\mu_{21}\)</span>为实数（也许可以证明，但我还不会）。那么光强的衰减可以表示为（Beer's law）： <span class="math display">\[
-I_l = I_0e^{(-\alpha l)}.
-\]</span> 大功告成。</p>
-
+        
+          <a class="article-more-a" href="/2021/096ff645d2.html#more">more >></a>
+        
       
 
       
