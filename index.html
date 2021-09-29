@@ -154,6 +154,168 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-谈谈选择定则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/0927c62124.html">谈谈选择定则</a>
+    </h1>
+  
+
+        
+        <a href="/2021/0927c62124.html" class="archive-article-date">
+  	<time datetime="2021-09-29T06:49:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="选择定则简介">选择定则简介</h1>
+<p>选择定则来源于坐标算符<span class="math inline">\(\bold{r}\)</span>与其他力学量算子之间的代数关系，也就是对易关系。通过选择定则我们可以判断能级之间在是电磁波的作用下否能够发生跃迁。</p>
+<h2 id="系统的哈密顿量">系统的哈密顿量</h2>
+<p>在恰当的规范选择下，光与原子相互作用的系统的哈密顿量可以写为： <span class="math display">\[
+\begin{aligned}H&amp;=H_{0}+H_{1}(t)\\
+&amp;=H_{0}-e\bold{r}\cdot \bold{E}(t)\\
+&amp;=H_{0}-e\left( r_1E_1+r_2E_2+r_3E_3 \right)
+\end{aligned}
+\]</span> 这是像是忽略了电子自旋的结果，但自旋对这个系统的哈密顿量是否有影响我还不是特别清楚，需要进一步学习，先承认这个哈密顿的正确性。注意，这是一个半经典的模型，没有将电磁场量子化，所以这里的<span class="math inline">\(\bold{E}\)</span>还只是一个number，不是量子力学中的动力学量。</p>
+<h2 id="complete-set-of-commuting-observables">Complete set of commuting observables</h2>
+<p>该系统的状态可以由“完备对易可观察量集”的本征态来描述（不知道翻译的怎么样），其本征态我们用量子数来描述，记为： <span class="math display">\[
+| nljm_j\rangle
+\]</span> 其中<span class="math inline">\(n\)</span>为主量子数，<span class="math inline">\(l\)</span>为轨道角动量的量子数，<span class="math inline">\(j\)</span>为总角动量的量子数，<span class="math inline">\(m_j\)</span>为磁量子数，对应着总角动量<span class="math inline">\(z\)</span>方向的量子数。</p>
+<h2 id="跃迁的规则">跃迁的规则</h2>
+<p>根据含时扰动的规则（以后有机会谈谈含时扰动），只有<span class="math inline">\(H_1(t)\)</span>的跃迁矩阵元不为零的情况才会发生能级的跃迁，也就是说<span class="math inline">\(r_1,r_2,r_3\)</span>的跃迁矩阵元不为零就有发生跃迁的可能性。</p>
+<h2 id="磁量子数的跃迁定则">磁量子数的跃迁定则</h2>
+<h3 id="角动量">角动量</h3>
+<p>回忆一下角动量<span class="math inline">\(\bold{L},\bold{S},\bold{J}\)</span>的性质，对于任意与薛定谔表象相关的矢量（比如说位置，动量，角动量等等）<span class="math inline">\(\bold{r}\)</span>： <span class="math display">\[
+\begin{aligned}
+\left[ L_i ,r_{j}\right] &amp;=i \hbar\epsilon_{ijk} r_k,\\
+\left[ S_i,r_{j}\right] &amp;= 0,\\
+ \bold{L}+\bold{S}&amp;=\bold{J},\\
+\left[ J_{i},r_ j\right] &amp;=i\hbar\epsilon_{ijk} r_k.
+\end{aligned}
+\]</span></p>
+<h3 id="磁量子数的跃迁定则-1">磁量子数的跃迁定则</h3>
+<p>本征方程： <span class="math display">\[
+J_3| nljm_j\rangle = \hbar m_j| nljm_j\rangle
+\]</span></p>
+<h4 id="与r_3相关的跃迁矩阵元">与<span class="math inline">\(r_3\)</span>相关的跃迁矩阵元</h4>
+<p>根据对易关系，我们有： <span class="math display">\[
+J_3r_3-r_3J_3 = 0
+\]</span> 等式两边取矩阵元： <span class="math display">\[
+\begin{align}
+&amp;\langle n&#39;l&#39;j&#39;m_j&#39;| J_3r_3-r_3J_3| n&#39;&#39;l&#39;&#39;j&#39;&#39;m_j&#39;&#39;\rangle = 0\\
+\Rightarrow&amp; \langle n&#39;l&#39;j&#39;m_j&#39;| J_3 \sum _{n&#39;&#39;&#39;,l&#39;&#39;&#39;,j&#39;&#39;&#39;,m_j&#39;&#39;&#39;}\left|n&#39;&#39;&#39;l&#39;&#39;&#39;j&#39;&#39;&#39;m_j&#39;&#39;&#39;\rangle \langle n&#39;&#39;&#39;l&#39;&#39;&#39;j&#39;&#39;&#39;m_j&#39;&#39;&#39;\right|  r_3-r_3J_3| n&#39;&#39;l&#39;&#39;j&#39;&#39;m_j&#39;&#39;\rangle = 0\\
+\Rightarrow&amp; \hbar m_j&#39;\left \langle n&#39;l&#39;j&#39;m_j&#39;\right|  r_3 | n&#39;&#39;l&#39;&#39;j&#39;&#39;m_j&#39;&#39;\rangle-\hbar m_j&#39;&#39;\left \langle n&#39;l&#39;j&#39;m_j&#39;\right|  r_3 | n&#39;&#39;l&#39;&#39;j&#39;&#39;m_j&#39;&#39;\rangle = 0\\
+\Rightarrow&amp;  (m_j&#39;-m_j&#39;&#39;)\left \langle n&#39;l&#39;j&#39;m_j&#39;\right|  r_3 | n&#39;&#39;l&#39;&#39;j&#39;&#39;m_j&#39;&#39;\rangle= 0\\
+\end{align}
+\]</span> 只有当<span class="math inline">\(m_j&#39; = m_j&#39;&#39;\)</span>时，跃迁矩阵元<span class="math inline">\(\langle n&#39;l&#39;j&#39;m_j&#39;| r_3 | n&#39;&#39;l&#39;&#39;j&#39;&#39;m_j&#39;&#39;\rangle\)</span>才有可能不为零。所以，如果电场只有<span class="math inline">\(z\)</span>方向的偏振<span class="math inline">\(E_1 = E_2 = 0, E_3 \neq0\)</span>，那么跃迁只会发生在磁量子数相等的情况。</p>
+<h4 id="与r_1r_2相关的跃迁矩阵元">与<span class="math inline">\(r_1,r_2\)</span>相关的跃迁矩阵元</h4>
+<p>根据对易关系，我们有： <span class="math display">\[
+\begin{aligned}
+J_{3}r_2-r_{2}J_{3}&amp;=-i\hbar r_{1}\\
+J_{3}r_1-r_1J_{3}&amp;=i\hbar r_{2}
+\end{aligned}
+\]</span> 同样的，我们取其矩阵元： <span class="math display">\[
+\begin{aligned}
+\left( m_{j}&#39;-m_{j}&#39;&#39;\right) \langle m_{j}&#39;\left| r_{2}\right| m_{j}&#39;&#39;\rangle &amp;=-i\langle m_{j}&#39;\left| r_{1}\right| m_{j}&#39;&#39;\rangle \\
+\left( m_{j}&#39;-m_{j}&#39;&#39;\right) \langle m_{j}&#39;\left| r_{1}\right| m_{j}&#39;&#39;\rangle &amp;=i\langle m_{j}&#39;\left| r_{2}\right| m_{j}&#39;&#39;\rangle
+\end{aligned}
+\]</span> 其中<span class="math inline">\(\langle m_{j}&#39;\left| r_{1,2}\right| m_{j}&#39;&#39;\rangle = \left \langle n&#39;l&#39;j&#39;m_j&#39;\right| r_{1,2} | n&#39;&#39;l&#39;&#39;j&#39;&#39;m_j&#39;&#39;\rangle\)</span>。这其实是一个齐次线性方程组，我们可以将其写为： <span class="math display">\[
+\begin{bmatrix}
+\left( m_{j}&#39;-m_{j}&#39;&#39;\right) &amp; -i \\
+i &amp; \left( m_{j}&#39;-m_{j}&#39;&#39;\right)
+\end{bmatrix}
+\begin{bmatrix}
+\langle m_{j}&#39;\left| r_{1}\right| m_{j}&#39;&#39;\rangle  \\
+\langle m_{j}&#39;\left| r_{2}\right| m_{j}&#39;&#39;\rangle 
+\end{bmatrix}=0
+\]</span> 方程想要有非零解的必要条件： <span class="math display">\[
+\begin{align}
+&amp;\bold{Det}\begin{bmatrix}
+\left( m_{j}&#39;-m_{j}&#39;&#39;\right) &amp; -i \\
+i &amp; \left( m_{j}&#39;-m_{j}&#39;&#39;\right)
+\end{bmatrix} =0
+\\
+\Rightarrow&amp; m_{j}&#39;-m_{j}&#39;&#39; = \pm 1
+\end{align}
+\]</span> 这个结果表明：如果电磁场的偏振方向为<span class="math inline">\(x,y\)</span>方向，也就是说<span class="math inline">\(E_1 \neq0,E_2\neq 0, E_3 =0\)</span>，那么跃迁只有可能会发生在磁量子数满足<span class="math inline">\(m_{j}&#39;-m_{j}&#39;&#39; = \pm 1\)</span>这个关系的两个态之间。我们可以进一步分析出到底咋样的偏振会导致<span class="math inline">\(m_{j}&#39;-m_{j}&#39;&#39; = 1\)</span>的跃迁。</p>
+<ul>
+<li><p>当<span class="math inline">\(m_{j}&#39;-m_{j}&#39;&#39; = 1\)</span>时：</p>
+<p>我们有： <span class="math display">\[
+\langle m_{j}&#39;\left| r_{1}\right| m_{j}&#39;&#39;\rangle = i\langle m_{j}&#39;\left| r_{2}\right| m_{j}&#39;&#39;\rangle
+\]</span> 也就是说<span class="math inline">\(\langle m_{j}&#39;\left| r_{1} - ir_2\right| m_{j}&#39;&#39;\rangle = 0\)</span>。</p></li>
+<li><p>当<span class="math inline">\(m_{j}&#39;-m_{j}&#39;&#39; = -1\)</span>时：</p>
+<p>我们有： <span class="math display">\[
+\langle m_{j}&#39;\left| r_{1}\right| m_{j}&#39;&#39;\rangle = -i\langle m_{j}&#39;\left| r_{2}\right| m_{j}&#39;&#39;\rangle
+\]</span> 也就是说<span class="math inline">\(\langle m_{j}&#39;\left| r_{1} + ir_2\right| m_{j}&#39;&#39;\rangle = 0\)</span>。</p></li>
+</ul>
+<p>以上的结果表明：如果电磁场和原子的相互作用，导致$H_1 r_{1} + ir_2 <span class="math inline">\(，那么只有满足\)</span>m_{j}'-m_{j}'' = 1<span class="math inline">\(的两个态之间才有可能发生跃迁，其他情况的跃迁皆被禁止。同样的，如果电磁场和原子的相互作用，导致\)</span>H_1 r_{1} - ir_2 <span class="math inline">\(，那么只有满足\)</span>m_{j}'-m_{j}'' = -1$的两个态之间才有可能发生跃迁，其他情况的跃迁皆被禁止。那到底怎样的电磁波会产生这样的哈密顿量呢？答案是圆偏振光，至于为什么，下回分解。</p>
+<h2 id="总结">总结</h2>
+<p>选择定则与算子间的对易关系息息相关，只要能够掌握量子力学中的代数关系，就可以轻易得到选择定则，如果有时间，不妨试一试总角动量大小对应的选择定则。总的来说，引起能级跃迁的本质就是加入了含时扰动项，这种扰动来源于光与原子的相互作用，而且能级之间到底怎样跃迁，还要取决于偏振情况。以下是我的一些思考，不一定正确：</p>
+<ul>
+<li><p>题外话1</p>
+<p>印象中，我室友告诉我自发辐射来源于真空态与原子的相互作用，我感觉空间中应该弥漫着各种偏振的真空态，所以与自发辐射相关的跃迁对磁量子数的要求应该是两个能级的磁量子数之差为<span class="math inline">\(0,1,-1\)</span>之一即可。</p></li>
+<li><p>题外话2</p>
+<p>从以上的分析，我们得到了能级跃迁对磁量子数的要求，同样的，可以分析其他角动量对应的量子数的选择定则，但有一个量子数比较特殊，主量子数<span class="math inline">\(n\)</span>，它对应着什么物理量呢？想要知道它对应着什么物理量，只需要知道他对应着哪个算符的本征值就好了，但它对应着谁的本征值呢？我们知道，在最简单的氢原子模型中，它是能量的本征态，可以认为他对应着哈密顿量自己，但我们一旦考虑精细结构，<span class="math inline">\(n\)</span>就无法对应着能量的本征值了。因为在考虑了精细结构的情况下（达尔文，自旋轨道耦合，相对论）相同的<span class="math inline">\(n\)</span>不同的<span class="math inline">\(j\)</span>对应着不同的能量本征态与本征值，那<span class="math inline">\(n\)</span>到底对应着什么？我不清楚......我知道一个事实，能级的跃迁对主量子数没有要求，也就是说，没有选择定则，这是不是就说明<span class="math inline">\(n\)</span>确实不会对应着某个物理量呢？这是我需要思考的，这某种意义上也是我写了这篇博客的收获，正是在写完的时候，我突然想到了这个问题，我需要将其想明白。</p></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">quantum</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/0927c62124.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-用密度矩阵描述原子对光的吸收" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
