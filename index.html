@@ -351,6 +351,19 @@ h2::after {
 dl { margin: 0; }
 
 footer { padding: 40px 0 48px; color: var(--muted); font-size: 23px; }
+.visits {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 4px 22px;
+  padding: 8px 16px 8px 8px;
+  background: var(--tile);
+  box-shadow: 0 0 0 4px var(--edge), 6px 6px 0 4px var(--shadow);
+}
+.visits[hidden] { display: none; }
+.visits .icon { width: 32px; height: 32px; box-shadow: none; }
+.visits-label { font-family: var(--font-display); font-size: 10px; color: #a6acd2; }
+.visits-num { font-family: var(--font-display); font-size: 16px; color: #7dff9a; letter-spacing: 2px; }
 
 @media (max-width: 860px) {
   .hero { grid-template-columns: minmax(0, 1fr); padding-top: 24px; }
@@ -621,6 +634,11 @@ footer { padding: 40px 0 48px; color: var(--muted); font-size: 23px; }
 </section>
 
 <footer>
+  <div class="visits" id="visits" hidden>
+    <canvas class="icon" data-sprite="visitor" width="16" height="16" aria-hidden="true"></canvas>
+    <span class="visits-label">VISITORS</span>
+    <span class="visits-num" id="visits-num">000000</span>
+  </div>
   <p>Chongwu Xie. Drawn in pixels, November 2026.</p>
   <p>Older writing: <a href="/archives/">blog archive from 2021</a> (in Chinese).</p>
 </footer>
@@ -779,6 +797,24 @@ footer { padding: 40px 0 48px; color: var(--muted); font-size: 23px; }
       "..wwkkwwwwkkww..",
       "..wwwwwwwwwwww..",
       "...wwwwwwwwww...",
+      "................",
+      "................"
+    ],
+    visitor: [
+      "................",
+      "......hhhh......",
+      ".....hhhhhh.....",
+      ".....hhhhhh.....",
+      ".....hhhhhh.....",
+      "......hhhh......",
+      "................",
+      "....bbbbbbbb....",
+      "...bbbbbbbbbb...",
+      "..bbbbbbbbbbbb..",
+      "..bbbbbbbbbbbb..",
+      "..bbbbbbbbbbbb..",
+      "..bbbbbbbbbbbb..",
+      "..bbbbbbbbbbbb..",
       "................",
       "................"
     ],
@@ -1138,6 +1174,30 @@ footer { padding: 40px 0 48px; color: var(--muted); font-size: 23px; }
     };
     window.requestAnimationFrame(step);
   }
+})();
+</script>
+<script>
+/* Visitor counter. Runs only on the GitHub Pages site, counts each browser once,
+   and stays hidden if the counting service cannot be reached. */
+(function () {
+  "use strict";
+  var box = document.getElementById("visits"), out = document.getElementById("visits-num");
+  if (!box || !out || !window.fetch || location.hostname !== "balabalabalalaba.github.io") return;
+  var seen = false;
+  try { seen = window.localStorage.getItem("cx-counted") === "1"; } catch (e) {}
+  var url = "https://abacus.jasoncameron.dev/" + (seen ? "get" : "hit") + "/balabalabalalaba.github.io/visitors";
+  fetch(url).then(function (r) {
+    if (!r.ok) throw new Error("counter unavailable");
+    return r.json();
+  }).then(function (d) {
+    var n = Number(d && d.value);
+    if (!isFinite(n) || n < 0) throw new Error("bad count");
+    var t = String(Math.floor(n));
+    while (t.length < 6) t = "0" + t;
+    out.textContent = t;
+    box.hidden = false;
+    if (!seen) { try { window.localStorage.setItem("cx-counted", "1"); } catch (e) {} }
+  }).catch(function () { /* leave the badge hidden */ });
 })();
 </script>
 </body>
