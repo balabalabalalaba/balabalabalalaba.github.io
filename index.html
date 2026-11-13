@@ -388,6 +388,7 @@ h1 span { display: block; }
 
 /* ---------- sections ---------- */
 section { padding: 68px 0 8px; }
+section[id] { scroll-margin-top: -36px; }   /* land with the heading near the bar, so more of the section fits */
 h2 {
   font-family: var(--font-display);
   font-weight: 400;
@@ -463,7 +464,7 @@ h2 small { order: 3; font-size: 8px; letter-spacing: 1px; color: var(--dim); whi
 .stat span:last-child { line-height: 1.1; }
 
 /* the machine */
-.machine { margin-top: 48px; }
+.machine { margin-bottom: 34px; }
 .scene-frame { padding: 10px; background: #1b1e36; }
 .scene-frame canvas { display: block; margin: 0 auto; background: #1b1e36; }
 .console { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start; padding: 14px 14px 0; }
@@ -794,7 +795,10 @@ footer p + p { margin-top: 4px; }
     <div class="win stat rv" style="--c: var(--nm480); --d: 0.1s"><span class="num" data-count="4">4</span><span>of them as first or co-first author</span></div>
     <div class="win stat rv" style="--c: var(--nm405); --d: 0.2s"><span class="num small">NOW</span><span>Feshbach resonances in an <sup>87</sup>Rb condensate</span></div>
   </div>
+</section>
 
+<section id="research">
+  <h2><span class="lv">01</span>Research<small>Main quests</small></h2>
   <figure class="machine rv">
     <div class="win">
       <div class="bar"><span>HOW TO MAKE A BEC</span><button class="play" id="seq-play" type="button" aria-pressed="false" aria-label="Pause or play the animation">PAUSE</button><span id="seq-step">STEP 1/8</span></div>
@@ -817,10 +821,7 @@ footer p + p { margin-top: 4px; }
     </div>
     <figcaption class="caption"><b>How a two-chamber <sup>87</sup>Rb BEC machine works, top view, not to scale.</b> Atoms are collected in a magneto-optical trap, carried in a magnetic trap to the science cell, cooled by evaporation into a condensate, then imaged. Click a step to jump to it.</figcaption>
   </figure>
-</section>
 
-<section id="research">
-  <h2><span class="lv">01</span>Research<small>Main quests</small></h2>
   <div class="research">
 
     <article class="win card hot rv">
