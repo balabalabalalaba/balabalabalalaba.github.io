@@ -11,6 +11,7 @@
 <meta property="og:title" content="Chongwu Xie | Experimental AMO physicist, University of Otago">
 <meta property="og:description" content="Chongwu Xie is a postdoctoral researcher in experimental AMO physics at the University of Otago, working on ultracold quantum gases, Bose-Einstein condensates and Rydberg-atom quantum sensing.">
 <meta property="og:url" content="https://balabalabalalaba.github.io/">
+<meta property="og:image" content="https://balabalabalalaba.github.io/avatar.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -51,6 +52,7 @@
     "Microwave electrometry",
     "Open quantum systems"
   ],
+  "image": "https://balabalabalalaba.github.io/avatar.png",
   "sameAs": [
     "https://orcid.org/0009-0005-4601-930X",
     "https://github.com/balabalabalalaba"
@@ -208,6 +210,10 @@ h1 {
   margin: 14px 0 18px;
   text-wrap: balance;
 }
+.who { display: flex; align-items: center; gap: 28px; margin-bottom: 22px; }
+.who h1 { margin: 12px 0 0; }
+.portrait { flex: none; padding: 6px; background: #1b1e36; line-height: 0; }
+.portrait img { display: block; width: 192px; height: 192px; image-rendering: pixelated; image-rendering: crisp-edges; }
 .lede { font-size: 31px; line-height: 1.15; max-width: 30em; }
 .lede + .lede { margin-top: 12px; color: var(--muted); }
 .actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 26px; }
@@ -429,6 +435,8 @@ footer { padding: 40px 0 48px; color: var(--muted); font-size: 23px; }
 @media (max-width: 560px) {
   body { font-size: 25px; }
   .lede { font-size: 28px; }
+  .who { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .portrait img { width: 128px; height: 128px; }
   .facts, .hobbies, .contact { grid-template-columns: minmax(0, 1fr); }
   .card { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 18px; }
   .papers { padding: 4px 16px; }
@@ -456,8 +464,13 @@ footer { padding: 40px 0 48px; color: var(--muted); font-size: 23px; }
 
 <header class="hero" id="top">
   <div>
-    <p class="eyebrow">Postdoctoral researcher, experimental AMO physics</p>
-    <h1>Chongwu Xie</h1>
+    <div class="who">
+      <div class="panel portrait"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAclBMVEX////6++bk38jSyrSo/9ZYxZa+sZr/sLjRn3uyfV6pnIxrqP+FfXj/a3qUZlB9VkRqbpBfWlpgQzcvelwfVkJKUHBFSGZGNC4fP4YUOjDCM0osMWAsJCMrLUcbHjZaGiwdFhcaHCwaGy4NDhsJChUFBQ20iv5rAAAEQ0lEQVR42qWWi3akKhBFfSTe1tDYMon0JJD4wP//xVsPsFGJkzVTKwu7k5xN1aEAs/v95eXlfr9//mVkn5/3f2JkNAbGXwI+Vgan8eH/9qNnFsHiUtw+zkt4IJgBgtut7/sbhLvR+B0l2//iTvLeWjvZHh+E6ZnyEwBmf7MThrU8Egg5PwPg9NNMhGme+QOOtv8ZAPWzF87+AwzwY/uUCdlBb6d5nTgAGIIE920f8BP0QeVBM2k9QdyQ8G0fxPODdWsiALE82mMZO0Dv0+7RCPbOshJTgJW1t3OAL8BKINnJaG1hBbF65MyYR38O8AlICZNNutWqVUobrfreA+ZpV8MOQPq5lzAjilvZtq0xCkb0ZIJk5t5tdm0KAAn0fYshIbQhjtK0JjOmEB8eCcDbm2gaARKFBGU0cZiAcXPxAbTtAwKM41sIrRVgJAFatQxcoIsPsYSJ468QRGI9AsxACOvinZ8CjL+es+z5+TlA0IwWXTDDAxAYewAQWkjh6elpmwfWY4wZuITo9Ni3MvSPeNQQB3GGBU08ayRotWp83QeVBE+AzLP7A0A2R8ArlPSKhNdxmk470VlbX8YEIcS43NzpeWDlBQDjCcC5k/MA9vPlQoTfIcb4C3xdznejkwioa5bhOEq5Eq7//R7NOaCuLxdGKBQvpq3xowe8A3O7Bl9f+wwul0DA/SNr+vQoYhzdRv7+vvcgItRS1bWR+Bwf+ggA8uv1cKxHgFrSmaC0HENEepj+ej1ksAXUfBAoiSebUl33cBCzBzl7EK/rFsAMOlhwV/t75cNnD/LEzXQA1DJE7bbZfyWvttjEcCyyvJbuYd47TX8C4GXkCAAugKf38hjABbomroBOMs2nYk0VBPMSnegKIDjfi6sDaN8KcJF5CUBZQhIt/ucKYPN5qJV27mHeAeBcWQABjYtWUJKLBFDDsriHeYfzwOVFWZYNOtfKCBFuqBb0iyN58jxwDCgavE1XhPQEeHRdp803byisz/MSCaXUEAHhCbLVXdVeaqeSAHyFLBlQlUXRwNLDjY6+hSbC73AxQRwBQZ0XWEJVYRJF1Wh/p1IKAq4UDfdKEpCXRU4BOkoBo2qQwJsIWqkcCICMI6DwevKQU8CRCHg3K61FBbfqMHRamISJkPqaQhUASBCaAspvSg0A0wmVeNPMKPcAoCA9pNCx3iiBPTR0YvD6bR9w9QW7GAgVEaAhlB6MEGZZjCi7Jfmu7MsvohR8NAIdGJSA+bsGVkok35Vzv4SYhJ95JUhYfCP0soiGVjpPdWK+IzQcjIITWXUK9FUw+kBYARR5EQBNsEFX0MVVAFASLgEIBDRy1QOhhS7o8MvaLnnRbQgHABNWG6AEUdEWydfYmJnlxxTiaKUQuLIxIG/ctg+2hP1a6ob0MSCPUsiKPaHcEjqDFWwziAlZWRZ7wgYgkoAHIasOhHLb0YJ21x6QB8D/u69lWX2bGA4AAAAASUVORK5CYII=" width="192" height="192" alt="Pixel-art portrait of Chongwu Xie wearing laser safety goggles, with a red and a blue laser beam behind him"></div>
+      <div>
+        <p class="eyebrow">Postdoctoral researcher, experimental AMO physics</p>
+        <h1>Chongwu Xie</h1>
+      </div>
+    </div>
     <p class="lede">I work with ultracold quantum gases and Rydberg atoms: rubidium cooled into a Bose&ndash;Einstein condensate, and vapours of giant atoms that sense microwave fields.</p>
     <p class="lede">Department of Physics and Dodd-Walls Centre, University of Otago, Dunedin, New Zealand.</p>
     <div class="actions">
