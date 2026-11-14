@@ -50,7 +50,8 @@
     "Rydberg atoms",
     "Quantum sensing",
     "Microwave electrometry",
-    "Open quantum systems"
+    "Open quantum systems",
+    "AI-assisted software development"
   ],
   "image": "https://balabalabalalaba.github.io/avatar.png",
   "sameAs": [
@@ -98,6 +99,7 @@
   --nm405: #b08cff;         /* SPDC pump */
   --ok: #7dff9a;
   --gold: #ffcf5a;
+  --amber: #ffcf5a;         /* gold that stays readable as text in both palettes */
   --chip: #232850;
   --on-accent: #0a0c1b;
   --tile: #0d0f22;          /* sprite tiles stay dark in both themes */
@@ -114,7 +116,7 @@
   --panel-2: #eef1fb;
   --ink: #1a1e3c;
   --muted: #535a80;
-  --dim: #6b7299;
+  --dim: #5f668d;
   --edge: #1a1e3c;
   --edge-soft: #c3cae2;
   --shadow: #b4bcd8;
@@ -123,6 +125,7 @@
   --nm405: #6d3fd0;
   --ok: #1f8f47;
   --gold: #ffcf5a;
+  --amber: #8a5a00;
   --chip: #dfe4f3;
   --on-accent: #ffffff;
   color-scheme: light;
@@ -147,9 +150,10 @@ body {
 a { color: var(--nm480); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 a:hover { color: var(--nm780); }
 a:focus-visible, button:focus-visible {
-  outline: 4px solid var(--gold);
+  outline: 4px solid var(--amber);
   outline-offset: 4px;
 }
+.splash a:focus-visible, .bar button:focus-visible { outline-color: var(--gold); }   /* these sit on dark in both palettes */
 sup { font-size: 0.7em; line-height: 0; }
 canvas, img { image-rendering: crisp-edges; image-rendering: pixelated; }
 h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
@@ -247,7 +251,7 @@ button { font: inherit; }
 }
 .logo:hover { color: var(--bg); background: var(--gold); }
 .hud nav { flex: 1; min-width: 0; }
-.hud nav ul { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+.hud nav ul { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding: 8px; margin: -8px; }
 .hud nav ul::-webkit-scrollbar { display: none; }
 .hud nav a {
   display: block;
@@ -434,6 +438,7 @@ h2 small { order: 3; font-size: 8px; letter-spacing: 1px; color: var(--dim); whi
 .attrs dt { font-family: var(--font-display); font-size: 10px; text-transform: uppercase; color: var(--nm780); -webkit-font-smoothing: none; }
 .attrs dd { color: var(--muted); }
 .lede { font-size: 30px; line-height: 1.12; max-width: 34em; margin-top: 20px; }
+.lede.also { font-size: 26px; color: var(--muted); margin-top: 10px; }
 .actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 24px; }
 .btn {
   display: inline-block;
@@ -456,7 +461,7 @@ h2 small { order: 3; font-size: 8px; letter-spacing: 1px; color: var(--dim); whi
 .btn:active { transform: translate(4px, 4px); box-shadow: 0 -4px 0 0 var(--edge), 0 4px 0 0 var(--edge), -4px 0 0 0 var(--edge), 4px 0 0 0 var(--edge); }
 .btn.primary { background: var(--nm780); color: var(--on-accent); }
 .btn.primary:hover { background: var(--gold); color: #0a0c1b; }
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 28px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; margin-top: 28px; }
 .stat { padding: 16px 18px; display: flex; gap: 16px; align-items: center; }
 .stat .num { flex: none; min-width: 1.4em; font-family: var(--font-display); font-size: 32px; line-height: 1; color: var(--c, var(--nm780)); -webkit-font-smoothing: none; }
 .stat .num.small { font-size: 12px; display: flex; align-items: center; gap: 8px; }
@@ -575,6 +580,31 @@ h2 small { order: 3; font-size: 8px; letter-spacing: 1px; color: var(--dim); whi
 }
 .note { color: var(--muted); font-size: 22px; margin: 18px 6px 0; }
 
+/* built with AI */
+.intro { max-width: 44em; font-size: 27px; line-height: 1.14; color: var(--muted); margin: -6px 4px 28px; }
+.builds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 26px; }
+.build { height: calc(100% - 8px); display: flex; flex-direction: column; }
+.build:hover .bar { --bar-ink: var(--on-accent); }
+.shot { padding: 8px; background: #0d0f22; line-height: 0; overflow: hidden; }
+.shot canvas { display: block; margin: 0 auto; }
+.build-body { flex: 1; display: flex; flex-direction: column; padding: 18px 20px 20px; }
+.build h3 { font-family: var(--font-head); font-size: 30px; line-height: 1; letter-spacing: 0.5px; }
+.pitch { margin-top: 8px; line-height: 1.12; }
+.build .bullets { margin-top: 14px; color: var(--muted); font-size: 23px; line-height: 1.1; }
+.tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.tech li {
+  font-family: var(--font-display);
+  font-size: 8px;
+  line-height: 1;
+  color: var(--dim);
+  padding: 5px 6px 4px;
+  box-shadow: 0 0 0 2px var(--edge-soft);
+  -webkit-font-smoothing: none;
+}
+.fine { font-size: 20px; line-height: 1.1; color: var(--dim); margin-top: 12px; }
+.links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: auto; padding-top: 20px; }
+.btn.sm { font-size: 20px; padding: 7px 12px 8px; }
+
 /* path */
 .map-frame { padding: 10px; background: #0f1030; }
 .map-frame canvas { display: block; margin: 0 auto; }
@@ -603,13 +633,14 @@ h2 small { order: 3; font-size: 8px; letter-spacing: 1px; color: var(--dim); whi
 .slots .icon { width: 48px; height: 48px; box-shadow: 0 0 0 2px var(--edge); }
 
 /* hobbies */
-.hobbies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 22px; }
+.hobbies { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 22px; }
 .hobby { height: calc(100% - 8px); padding: 18px; display: flex; flex-direction: column; gap: 14px; }
 .hobby header { display: flex; gap: 16px; align-items: center; }
 .hobby h3 { font-family: var(--font-head); font-size: 30px; line-height: 1; letter-spacing: 0.5px; }
 .hobby p { color: var(--muted); }
 .hobby:hover .icon { animation: hop 0.4s steps(2) 2; }
 @keyframes hop { 50% { transform: translateY(-6px); } }
+@media (min-width: 901px) { .hobby header { flex-direction: column; align-items: flex-start; } }
 
 /* contact */
 .dialog-body { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 24px; padding: 22px 24px 24px; }
@@ -692,13 +723,15 @@ footer p + p { margin-top: 4px; }
 @media (min-width: 1200px) {
   h1 { font-size: 80px; }
 }
-@media (max-width: 900px) {
+@media (max-width: 1040px) {
   html { scroll-padding-top: 124px; }
   .hud-in { flex-wrap: wrap; }
   .hud nav { order: 3; flex-basis: 100%; }
   .toggles { margin-left: auto; }
+}
+@media (max-width: 900px) {
   .stats, .hobbies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .path, .tools { grid-template-columns: minmax(0, 1fr); }
+  .path, .tools, .builds { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 600px) {
   body { font-size: 23px; }
@@ -711,6 +744,9 @@ footer p + p { margin-top: 4px; }
   .portrait img { width: 192px; height: 192px; }
   .name { font-size: 16px; }
   .lede { font-size: 26px; }
+  .lede.also { font-size: 23px; }
+  .intro { font-size: 24px; }
+  .build-body { padding: 16px; }
   .stats, .hobbies, .slots { grid-template-columns: minmax(0, 1fr); }
   .card { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 18px; }
   .papers { padding: 2px 16px; }
@@ -719,6 +755,9 @@ footer p + p { margin-top: 4px; }
   .menu > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   h2 small, #seq-step { display: none; }
   .tagline br { display: none; }
+}
+@media (max-width: 359px) {
+  .corner.tl span { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -740,6 +779,7 @@ footer p + p { margin-top: 4px; }
       <ul>
         <li><a href="#research">Research</a></li>
         <li><a href="#papers">Papers</a></li>
+        <li><a href="#builds">AI builds</a></li>
         <li><a href="#path">Path</a></li>
         <li><a href="#toolbox">Toolbox</a></li>
         <li><a href="#off-bench">Off the bench</a></li>
@@ -757,12 +797,12 @@ footer p + p { margin-top: 4px; }
 
 <header class="splash" id="top">
   <canvas id="sky" width="320" height="180" role="img" aria-label="Animated pixel-art night view of Dunedin. The aurora australis and the Southern Cross hang over dark hills, the University of Otago clocktower and a lab whose window glows with laser light, all reflected in the harbour. A small figure in a lab coat and green goggles watches from the shore."></canvas>
-  <p class="corner tl" aria-hidden="true">PAPERS <b>06</b></p>
+  <p class="corner tl" aria-hidden="true">PAPERS <b>06</b><span> BUILDS <b>04</b></span></p>
   <p class="corner tr" aria-hidden="true">45.87&deg;S 170.50&deg;E</p>
   <div class="title-in">
     <p class="eyebrow">Postdoctoral researcher &middot; experimental AMO physics</p>
     <h1>Chongwu <span>Xie</span></h1>
-    <p class="tagline">Ultracold quantum gases and Rydberg atoms<br>University of Otago, Dunedin, New Zealand</p>
+    <p class="tagline">Ultracold quantum gases and Rydberg atoms<br> University of Otago, Dunedin, New Zealand</p>
     <a class="start" href="#about" id="start"><i class="arr" aria-hidden="true"></i><span>PRESS START</span></a>
   </div>
 </header>
@@ -782,9 +822,11 @@ footer p + p { margin-top: 4px; }
           <div><dt>Base</dt><dd>Dunedin, New Zealand</dd></div>
         </dl>
         <p class="lede">I work with ultracold quantum gases and Rydberg atoms: rubidium cooled into a Bose&ndash;Einstein condensate, and vapours of giant atoms that sense microwave fields.</p>
+        <p class="lede also">Away from the bench I build the tools and games I want with AI coding agents.</p>
         <div class="actions">
           <a class="btn primary" href="#research">See the research</a>
           <a class="btn" href="#papers">Read the papers</a>
+          <a class="btn" href="#builds">See what I build</a>
           <a class="btn" href="#contact">Get in touch</a>
         </div>
       </div>
@@ -794,6 +836,7 @@ footer p + p { margin-top: 4px; }
     <div class="win stat rv"><span class="num" data-count="6">6</span><span>peer-reviewed journal articles, 2023 to 2025</span></div>
     <div class="win stat rv" style="--c: var(--nm480); --d: 0.1s"><span class="num" data-count="4">4</span><span>of them as first or co-first author</span></div>
     <div class="win stat rv" style="--c: var(--nm405); --d: 0.2s"><span class="num small">NOW</span><span>Feshbach resonances in an <sup>87</sup>Rb condensate</span></div>
+    <div class="win stat rv" style="--c: var(--amber); --d: 0.3s"><span class="num" data-count="4">4</span><span>favourite projects built with AI, from lab tools to a game</span></div>
   </div>
 </section>
 
@@ -925,8 +968,96 @@ footer p + p { margin-top: 4px; }
   <p class="note">* equal contribution. Newest first.</p>
 </section>
 
+<section id="builds">
+  <h2 style="--c: var(--nm405)"><span class="lv">03</span>Built with AI<small>Workshop</small></h2>
+  <p class="intro rv">I love using LLMs to build things that help in my daily life and work. AI coding agents write most of the code; my part is knowing exactly what I want and checking that it really works. These four are my favourites.</p>
+  <div class="builds">
+
+    <article class="win build hot rv" style="--c: var(--nm405)">
+      <div class="bar"><span>GAME</span><span>NOV 2026</span></div>
+      <div class="shot"><canvas data-scene="atlas" width="125" height="64" role="img" aria-label="Animated pixel-art preview: a striped hot-air balloon drifts over green hills with three small houses while the sky turns from morning to day, dusk and a night of rising lanterns."></canvas></div>
+      <div class="build-body">
+        <h3>Equestria Atlas</h3>
+        <p class="pitch">A fan-made pixel-art balloon adventure across the world of My Little Pony. Claude wrote every script; I worked as the supervisor.</p>
+        <ul class="bullets">
+          <li>Fly a balloon over a world map, land in 20 places and mend a small trouble in each one.</li>
+          <li>One in-game day lasts 24 real minutes, and the places are relit for the hour, from morning to a night full of lanterns.</li>
+          <li>Every scene is drawn by code and the 24 chiptune loops are synthesised.</li>
+        </ul>
+        <ul class="tech" aria-label="Built with"><li>PYTHON</li><li>PYGAME</li><li>NUMPY</li><li>GITHUB ACTIONS</li></ul>
+        <p class="fine">Fan-made and non-commercial; landscapes only, no characters. Not affiliated with Hasbro.</p>
+        <p class="links">
+          <a class="btn sm primary" href="https://github.com/balabalabalalaba/equestria-atlas/releases/latest" aria-label="Download for Windows: Equestria Atlas">Download for Windows</a>
+          <a class="btn sm" href="https://www.bilibili.com/video/BV1Ny4v65EDd/">Watch the video</a>
+          <a class="btn sm" href="https://github.com/balabalabalalaba/equestria-atlas" aria-label="GitHub: Equestria Atlas">GitHub</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="win build hot rv" style="--d: 0.1s">
+      <div class="bar"><span>EDITOR</span><span>NOV 2026</span></div>
+      <div class="shot"><canvas data-scene="bench" width="125" height="64" role="img" aria-label="Animated pixel-art preview of an optical breadboard: a laser beam passes an isolator and a beam-splitter cube, one arm goes by two mirrors to a fibre, the other through a rubidium cell and a wave plate to a mirror and back to a photodiode."></canvas></div>
+      <div class="build-body">
+        <h3>Pixel Optical Bench</h3>
+        <p class="pitch">A pixel-art editor for laying out optical tables in the browser. It traces the laser beams and checks the setup.</p>
+        <ul class="bullets">
+          <li>77 part types, from lasers and wave plates to vacuum chambers and rack electronics, each a pixel sprite drawn in code.</li>
+          <li>Beams carry power, polarisation and optical frequency; rule-based checks cover laser locks, MOTs and photon-pair count rates.</li>
+          <li>17 built-in examples with guided tours, including BEC machines, optical lattice clocks and heralded single photons.</li>
+        </ul>
+        <ul class="tech" aria-label="Built with"><li>REACT</li><li>KONVA</li><li>NOTHING TO INSTALL</li></ul>
+        <p class="fine">Rule-based checks, not a physics simulation. Best in Chrome or Edge.</p>
+        <p class="links">
+          <a class="btn sm primary" href="https://balabalabalalaba.github.io/pixel-optical-bench/">Open in the browser</a>
+          <a class="btn sm" href="https://github.com/balabalabalalaba/pixel-optical-bench" aria-label="GitHub: Pixel Optical Bench">GitHub</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="win build hot rv" style="--c: var(--nm480)">
+      <div class="bar"><span>INSTRUMENT</span><span>NOV 2026</span></div>
+      <div class="shot"><canvas data-scene="profiler" width="125" height="64" role="img" aria-label="Animated pixel-art preview of the profiler: a false-colour laser spot with its 1/e-squared contour and crosshair, beside X and Y profile plots with Gaussian fits."></canvas></div>
+      <div class="build-body">
+        <h3>Beam Profiler</h3>
+        <p class="pitch">A Windows app, built with Claude, that turns a Thorlabs Zelux camera into a live laser beam profiler.</p>
+        <ul class="bullets">
+          <li>Live D4&sigma; widths (ISO 11146 second moments), 1D and 2D Gaussian fits, and M<sup>2</sup> from widths at several positions.</li>
+          <li>A Python engine streams frames over a WebSocket to a plain-JavaScript page; a simulated beam runs with no camera.</li>
+          <li>GitHub Actions runs 31 test functions and a 9-check self-test before it builds the Windows installer.</li>
+        </ul>
+        <ul class="tech" aria-label="Built with"><li>PYTHON</li><li>NUMPY + SCIPY</li><li>FASTAPI</li><li>PLAIN JS</li><li>MIT LICENCE</li></ul>
+        <p class="fine">Needs Windows and Thorlabs' own ThorCam software. Not affiliated with Thorlabs.</p>
+        <p class="links">
+          <a class="btn sm primary" href="https://github.com/balabalabalalaba/zelux-beam-profiler/releases/latest" aria-label="Download for Windows: Beam Profiler">Download for Windows</a>
+          <a class="btn sm" href="https://github.com/balabalabalalaba/zelux-beam-profiler" aria-label="GitHub: Beam Profiler">GitHub</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="win build hot rv" style="--c: var(--amber); --d: 0.1s">
+      <div class="bar"><span>BOT</span><span>JAN 2026</span></div>
+      <div class="shot"><canvas data-scene="digest" width="125" height="64" role="img" aria-label="Animated pixel-art preview: a clock reads 01:00 UTC, an envelope sets off, and four paper entries tagged with arXiv categories appear in a daily digest."></canvas></div>
+      <div class="build-body">
+        <h3>arXiv Paper Monitor</h3>
+        <p class="pitch">An early one: a small bot that emails a daily digest of recent arXiv and journal papers matching my Rydberg keywords.</p>
+        <ul class="bullets">
+          <li>Scheduled once a day on GitHub Actions, so there is no server to look after.</li>
+          <li>Filters four arXiv category feeds and 15 journal RSS feeds by keyword, then removes duplicate titles.</li>
+          <li>About 800 lines of Python, almost all written by AI; the first version took about two hours of back-and-forth.</li>
+        </ul>
+        <ul class="tech" aria-label="Built with"><li>PYTHON</li><li>GITHUB ACTIONS</li><li>RSS</li><li>SMTP</li><li>MIT LICENCE</li></ul>
+        <p class="fine">First version January 2026; reworked with Claude in July 2026. The README is in Chinese.</p>
+        <p class="links">
+          <a class="btn sm primary" href="https://github.com/balabalabalalaba/arxiv-paper-monitor" aria-label="GitHub: arXiv Paper Monitor">GitHub</a>
+        </p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
 <section id="path">
-  <h2 style="--c: var(--nm405)"><span class="lv">03</span>Path<small>World map</small></h2>
+  <h2 style="--c: var(--nm405)"><span class="lv">04</span>Path<small>World map</small></h2>
   <div class="win map-frame rv">
     <canvas id="map" width="360" height="96" role="img" aria-label="Pixel-art side view of the journey at sunset. Skyscrapers under the mountains of Chongqing, a university hall in Hefei, then a flight across the sea, past the setting sun, to the clocktower and snowy peaks of Dunedin. A small figure in a lab coat travels between three flags."></canvas>
   </div>
@@ -959,7 +1090,7 @@ footer p + p { margin-top: 4px; }
 </section>
 
 <section id="toolbox">
-  <h2><span class="lv">04</span>Toolbox<small>Inventory</small></h2>
+  <h2><span class="lv">05</span>Toolbox<small>Inventory</small></h2>
   <div class="tools">
     <div class="win rv">
       <div class="bar"><h3>ON THE BENCH</h3></div>
@@ -988,29 +1119,21 @@ footer p + p { margin-top: 4px; }
 </section>
 
 <section id="off-bench">
-  <h2 style="--c: var(--nm480)"><span class="lv">05</span>Off the bench<small>Side quests</small></h2>
+  <h2 style="--c: var(--nm480)"><span class="lv">06</span>Off the bench<small>Side quests</small></h2>
   <div class="hobbies">
     <article class="win hobby hot rv">
-      <header><canvas class="icon" data-sprite="bench" width="16" height="16" aria-hidden="true"></canvas><h3>Pixel Optical Bench Editor</h3></header>
-      <p>My side project: a 2D top-down pixel-art editor for drawing optical tables, so real AMO setups can be rebuilt one component at a time.</p>
-    </article>
-    <article class="win hobby hot rv" style="--c: var(--nm480); --d: 0.08s">
       <header><canvas class="icon" data-sprite="coffee" width="16" height="16" aria-hidden="true"></canvas><h3>Cold brew</h3></header>
       <p>Light roasts, iced Americanos, and a new caf&eacute; whenever I find one. I keep a brew log in a small web app I built.</p>
     </article>
-    <article class="win hobby hot rv" style="--c: var(--nm405); --d: 0.16s">
-      <header><canvas class="icon" data-sprite="robot" width="16" height="16" aria-hidden="true"></canvas><h3>Building with AI</h3></header>
-      <p>I love using LLMs to build things that help in my daily life and work: small web apps, analysis tools and research workflows.</p>
-    </article>
-    <article class="win hobby hot rv" style="--c: var(--nm405)">
+    <article class="win hobby hot rv" style="--c: var(--nm480); --d: 0.08s">
       <header><canvas class="icon" data-sprite="moto" width="16" height="16" aria-hidden="true"></canvas><h3>Motorcycles</h3></header>
       <p>A soft spot for anything with two wheels and an engine.</p>
     </article>
-    <article class="win hobby hot rv" style="--d: 0.08s">
+    <article class="win hobby hot rv" style="--c: var(--nm405); --d: 0.16s">
       <header><canvas class="icon" data-sprite="dice" width="16" height="16" aria-hidden="true"></canvas><h3>Board games</h3></header>
       <p>I really love board games, and I am always happy to sit down for one.</p>
     </article>
-    <article class="win hobby hot rv" style="--c: var(--nm480); --d: 0.16s">
+    <article class="win hobby hot rv" style="--c: var(--nm480); --d: 0.24s">
       <header><canvas class="icon" data-sprite="lift" width="16" height="16" aria-hidden="true"></canvas><h3>Walking and lifting</h3></header>
       <p>I walk to work every day, about 10,000 steps, and track short gym sessions in a pixel workout log of my own.</p>
     </article>
@@ -1018,7 +1141,7 @@ footer p + p { margin-top: 4px; }
 </section>
 
 <section id="contact">
-  <h2><span class="lv">06</span>Contact<small>Co-op mode</small></h2>
+  <h2><span class="lv">07</span>Contact<small>Co-op mode</small></h2>
   <div class="win rv">
     <div class="bar"><span>CHONGWU</span></div>
     <div class="dialog-body">
@@ -1199,7 +1322,7 @@ footer p + p { margin-top: 4px; }
       if (!(n > 0)) return;
       el.textContent = "0";
       var io = new IntersectionObserver(function (es) {
-        if (!es[0].isIntersecting) return;
+        if (!es[es.length - 1].isIntersecting) return;
         io.disconnect();
         var v = 0, id = window.setInterval(function () {
           v++; el.textContent = String(v); sfx("tick");
@@ -1214,7 +1337,7 @@ footer p + p { margin-top: 4px; }
       says.setAttribute("aria-label", full);
       says.textContent = "";
       var typer = new IntersectionObserver(function (es) {
-        if (!es[0].isIntersecting) return;
+        if (!es[es.length - 1].isIntersecting) return;
         typer.disconnect();
         var i = 0, id = window.setInterval(function () {
           i++; says.textContent = full.slice(0, i);
@@ -1358,24 +1481,6 @@ footer p + p { margin-top: 4px; }
       "................",
       "................"
     ],
-    bench: [
-      "................",
-      "................",
-      "................",
-      ".mmmm......c....",
-      ".mmmmooooooocc..",
-      ".mmmm......o.c..",
-      ".mmmm......o....",
-      "...........o....",
-      "...........o....",
-      "...........o....",
-      "...........o....",
-      "..........ggg...",
-      "..........ghg...",
-      "..........ggg...",
-      "................",
-      "................"
-    ],
     coffee: [
       "................",
       "..........o.....",
@@ -1392,24 +1497,6 @@ footer p + p { margin-top: 4px; }
       ".....wnnnw......",
       ".....wwwww......",
       "................",
-      "................"
-    ],
-    robot: [
-      "................",
-      ".......hh.......",
-      ".......mm.......",
-      "...mmmmmmmmmm...",
-      "..mmmmmmmmmmmm..",
-      "..mmttmmmmttmm..",
-      "..mmttmmmmttmm..",
-      "..mmmmmmmmmmmm..",
-      "..mmmkkkkkkmmm..",
-      "..mmmmmmmmmmmm..",
-      "...mmmmmmmmmm...",
-      ".....mm..mm.....",
-      "....vvvvvvvv....",
-      "...vvvvvvvvvv...",
-      "...vvvvvvvvvv...",
       "................"
     ],
     moto: [
@@ -1734,13 +1821,12 @@ footer p + p { margin-top: 4px; }
       return (j === y || j === y + 1) ? row.slice(0, x) + ch + ch + row.slice(x + 2) : row;
     });
   }
-  /* a few tiles move: the cloud breathes, the electron orbits, the slab mode stops leaking, the robot blinks */
+  /* a few tiles move: the cloud breathes, the electron orbits, the slab mode stops leaking */
   var ORBIT = [[14, 7], [12, 12], [7, 13], [2, 12], [0, 7], [2, 2], [7, 1], [12, 2]];
   var FRAMES = {
     cloud: [SPRITES.cloud, SPRITES.cloud, swap(SPRITES.cloud, "yw", "wh"), swap(SPRITES.cloud, "yw", "wh")],
     atom: ORBIT.map(function (p) { return stamp(SPRITES.atom, p[0], p[1], "w"); }),
-    slab: [SPRITES.slab, SPRITES.slab, SPRITES.slab, swap(SPRITES.slab.slice(0, 5), "h", ".").concat(SPRITES.slab.slice(5, 11), swap(SPRITES.slab.slice(11), "h", ".")), null, null],
-    robot: [SPRITES.robot, SPRITES.robot, SPRITES.robot, SPRITES.robot, SPRITES.robot, SPRITES.robot, SPRITES.robot, swap(SPRITES.robot, "t", "k")]
+    slab: [SPRITES.slab, SPRITES.slab, SPRITES.slab, swap(SPRITES.slab.slice(0, 5), "h", ".").concat(SPRITES.slab.slice(5, 11), swap(SPRITES.slab.slice(11), "h", ".")), null, null]
   };
   FRAMES.slab[4] = FRAMES.slab[3]; FRAMES.slab[5] = FRAMES.slab[3];
 
@@ -1991,7 +2077,7 @@ footer p + p { margin-top: 4px; }
 
   if (!still) {
     var seen = true, last = 0;
-    if (window.IntersectionObserver) new IntersectionObserver(function (es) { seen = es[0].isIntersecting; }).observe(host);
+    if (window.IntersectionObserver) new IntersectionObserver(function (es) { seen = es[es.length - 1].isIntersecting; }).observe(host);
     var tick = function (now) {
       if (seen && !document.hidden && px && now - last > 80) { last = now; frame++; render(); }
       window.requestAnimationFrame(tick);
@@ -2353,10 +2439,10 @@ footer p + p { margin-top: 4px; }
     });
   }
   if (!still) {
-    if (window.IntersectionObserver) new IntersectionObserver(function (es) { onscreen = es[0].isIntersecting; }).observe(cv);
+    if (window.IntersectionObserver) new IntersectionObserver(function (es) { onscreen = es[es.length - 1].isIntersecting; }).observe(cv);
     var last = 0;
     var step = function (now) {
-      if (!paused && onscreen && !document.hidden && now - last > 100) { last = now; frame++; draw(frame); }
+      if (!paused && onscreen && !document.hidden && now - last > 95) { last = now; frame++; draw(frame); }
       window.requestAnimationFrame(step);
     };
     window.requestAnimationFrame(step);
@@ -2601,8 +2687,9 @@ footer p + p { margin-top: 4px; }
     /* the first time the map scrolls into view, replay the whole trip */
     if (window.IntersectionObserver) {
       new IntersectionObserver(function (es) {
-        seen = es[0].isIntersecting;
-        if (seen && !begun && es[0].intersectionRatio > 0.55) begin();
+        var e = es[es.length - 1];
+        seen = e.isIntersecting;
+        if (seen && !begun && e.intersectionRatio > 0.55) begin();
       }, { threshold: [0, 0.6] }).observe(host);
     } else { seen = true; begin(); }
     var last = 0;
@@ -2611,6 +2698,303 @@ footer p + p { margin-top: 4px; }
         last = now; frame++;
         if (pos === target && tour.length && --wait <= 0) { target = tour.shift(); wait = 16; }
         advance(); draw();
+      }
+      window.requestAnimationFrame(tick);
+    };
+    window.requestAnimationFrame(tick);
+  }
+})();
+</script>
+<script>
+/* ---------- built with AI: a small living preview for each project ---------- */
+(function () {
+  "use strict";
+  var shots = Array.prototype.slice.call(document.querySelectorAll("canvas[data-scene]"));
+  if (!shots.length || !window.Uint32Array) return;
+  var still = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var H = 64, BASE = 112;
+  var B4 = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+  function thr(x, y) { return (B4[(x & 3) + ((y & 3) << 2)] + 0.5) / 16; }
+  function C(hex) { var n = parseInt(hex.slice(1), 16); return (0xff000000 | ((n & 255) << 16) | (n & 0xff00) | (n >>> 16)) >>> 0; }
+  function hash(n) { n = Math.imul(n ^ 61, 2654435761) >>> 0; n ^= n >>> 15; return (Math.imul(n, 2246822519) >>> 0) / 4294967296; }
+  var FONT = {
+    A: "010101111101101", B: "110101110101110", C: "111100100100111", D: "110101101101110", E: "111100111100111",
+    F: "111100110100100", G: "111100101101111", H: "101101111101101", I: "111010010010111", J: "001001001101111",
+    K: "101101110101101", L: "100100100100111", M: "101111111101101", N: "110101101101101", O: "111101101101111",
+    P: "111101111100100", Q: "111101101111001", R: "110101110101101", S: "111100111001111", T: "111010010010010",
+    U: "101101101101111", V: "101101101101010", W: "101101111111101", X: "101101010101101", Y: "101101010010010",
+    Z: "111001010100111", "0": "111101101101111", "1": "010110010010111", "2": "111001111100111", "3": "111001111001111",
+    "4": "101101111001001", "5": "111100111001111", "6": "111100111101111", "7": "111001001001001", "8": "111101111101111",
+    "9": "111101111001111", "-": "000000111000000", ".": "000000000000010", ":": "000010000010000", "+": "000010111010000"
+  };
+  function text(g, str, x, y, col) {
+    g.fillStyle = col;
+    for (var i = 0; i < str.length; i++) {
+      var gl = FONT[str.charAt(i)];
+      if (gl) for (var k = 0; k < 15; k++) if (gl.charAt(k) === "1") g.fillRect(x + i * 4 + (k % 3), y + ((k / 3) | 0), 1, 1);
+    }
+  }
+  function tag(g, str, x, y, bg, fg) {
+    g.fillStyle = bg; g.fillRect(x - 1, y - 1, str.length * 4 + 1, 7);
+    text(g, str, x, y, fg);
+  }
+  var SCENES = {};
+
+  /* Equestria Atlas: a striped balloon drifts over the hills from morning to a night full of lanterns */
+  SCENES.atlas = function (W, g) {
+    var img = g.createImageData(W, H), px = new Uint32Array(img.data.buffer), bufs = [], i, x, y;
+    var LOOK = [
+      { sky: ["#8ecbf5", "#b6defa", "#ffe9c9", "#ffd6a0"], land: ["#8fdc8f", "#6cc47c"], wall: "#fff4e0", roof: "#e0607a", win: "#8a6a5a", cloud: "#ffffff" },
+      { sky: ["#3f9be6", "#62b4f0", "#8fcdf8", "#bfe4ff"], land: ["#7ad37a", "#57b866"], wall: "#fff4e0", roof: "#e0607a", win: "#6a8ab0", cloud: "#ffffff" },
+      { sky: ["#2c2360", "#6a3a86", "#c8527e", "#ff9a68"], land: ["#3f6f6a", "#2f5560"], wall: "#a8809a", roof: "#5a3a6a", win: "#ffcf7a", cloud: "#ffb7a8" },
+      { sky: ["#060920", "#0b1030", "#121a44", "#1b2658"], land: ["#16284a", "#101e3c"], wall: "#2a3050", roof: "#1b1e36", win: "#ffcf7a", cloud: "#2a3566" }
+    ];
+    var SUN = [[0.2, 44, 4, "#fff2a8"], [0.74, 9, 4, "#fff6c0"], [0.8, 46, 5, "#ffd070"], [0.8, 11, 4, "#f4f0d0"]];
+    function hill(x) { return Math.round(52 - 4 * Math.sin(x * 0.07 + 1) - 2 * Math.sin(x * 0.19 + 2)); }
+    function fore(x) { return Math.round(58 - 3 * Math.sin(x * 0.05 + 4)); }
+    for (i = 0; i < 4; i++) {
+      var b = new Uint32Array(W * H), L = LOOK[i], sky = L.sky.map(C), land = L.land.map(C);
+      var sx = Math.round(W * SUN[i][0]), sy = SUN[i][1], sr = SUN[i][2], sc = C(SUN[i][3]), star = C("#cfd8ff");
+      for (y = 0; y < H; y++) for (x = 0; x < W; x++) {
+        var t = Math.pow(Math.min(1, y / 52), 1.2) * (sky.length - 1), k = Math.min(sky.length - 1, Math.floor(t)), col;
+        if (k < sky.length - 1 && t - k > thr(x, y)) k++;
+        col = sky[k];
+        if (i === 3 && y < 40 && hash(x * 131 + y * 977) < 0.014) col = star;
+        var dx = x - sx, dy = y - sy;
+        if (dx * dx + dy * dy <= sr * sr + 1 && !(i === 3 && (dx - 2) * (dx - 2) + (dy + 1) * (dy + 1) <= sr * sr - 2)) col = sc;
+        b[y * W + x] = y >= fore(x) ? land[1] : y >= hill(x) ? land[0] : col;
+      }
+      /* three little places to visit */
+      [0.16, 0.5, 0.83].forEach(function (f, n) {
+        var hx = Math.round(W * f), hy = hill(hx) + 1, wall = C(L.wall), roof = C(L.roof), win = C(L.win), u, v;
+        for (v = 0; v < 4; v++) for (u = 0; u < 6; u++) b[(hy - 4 + v) * W + hx + u] = wall;
+        for (v = 0; v < 3; v++) for (u = v - 1; u < 7 - v; u++) b[(hy - 5 - v) * W + hx + u] = roof;
+        b[(hy - 3) * W + hx + 1 + (n % 2) * 3] = win; b[(hy - 2) * W + hx + 1 + (n % 2) * 3] = win;
+      });
+      bufs.push(b);
+    }
+    /* the balloon, after the game's own icon */
+    var BAL = [], ROWS = [[4, 8], [2, 10], [1, 11], [0, 12], [0, 12], [0, 12], [0, 12], [1, 11], [1, 11], [2, 10], [3, 9], [4, 8]], STRIPE = "kaahllrrlvvok";
+    var INK = { k: "#3b2340", a: "#f07a9a", h: "#f6c0f0", l: "#b08cf0", r: "#f0507a", v: "#9060b0", o: "#d06080", y: "#ffcf3a", n: "#a08060", b: "#b0603a", d: "#8a4428" };
+    ROWS.forEach(function (r, j) {
+      for (var q = r[0]; q <= r[1]; q++) BAL.push([q, j, (q === r[0] || q === r[1] || j === 0) ? "k" : STRIPE.charAt(q)]);
+    });
+    [[6, 3], [5, 4], [6, 4], [7, 4], [6, 5]].forEach(function (p) { BAL.push([p[0], p[1], "y"]); });
+    for (i = 4; i <= 8; i++) { BAL.push([i, 12, "y"]); BAL.push([i, 15, "b"]); BAL.push([i, 16, i % 2 ? "d" : "b"]); }
+    BAL.push([4, 13, "n"]); BAL.push([8, 13, "n"]); BAL.push([4, 14, "n"]); BAL.push([8, 14, "n"]);
+    var CLOUDS = [[10, 9, 0.12], [70, 20, 0.2], [130, 6, 0.08]];
+
+    return function (f) {
+      var ph = Math.floor((f % 240) / 60), u = f % 60, t = u < 46 ? 0 : (u - 46) / 14, a = bufs[ph], b = bufs[(ph + 1) % 4], n = W * H;
+      if (!t) px.set(a);
+      else for (i = 0; i < n; i++) px[i] = t > thr(i % W, (i / W) | 0) ? b[i] : a[i];
+      g.putImageData(img, 0, 0);
+      var look = LOOK[t > 0.5 ? (ph + 1) % 4 : ph], night = ph === 3 ? 1 - t : ph === 2 ? t : 0;
+      g.fillStyle = look.cloud;
+      CLOUDS.forEach(function (c) {
+        var cx = Math.round(((c[0] + f * c[2]) % (W + 26)) - 13);
+        g.fillRect(cx + 3, c[1] - 2, 5, 1); g.fillRect(cx + 1, c[1] - 1, 9, 1); g.fillRect(cx, c[1], 12, 2);
+      });
+      for (i = 0; i < 10; i++) {
+        if (night <= i / 12) continue;
+        var lx = 3 + Math.floor(hash(i * 7 + 3) * (W - 6)) + Math.round(Math.sin(f * 0.05 + i) * 1.5);
+        var ly = 50 - Math.floor((f * (0.22 + 0.08 * (i % 3)) + i * 11) % 54);
+        g.fillStyle = "#ffe9a8"; g.fillRect(lx, ly, 1, 1);
+        g.fillStyle = "#ff9a3a"; g.fillRect(lx, ly + 1, 1, 1);
+      }
+      var bx = Math.round(((f * 0.3 + W * 0.3) % (W + 24)) - 18), by = 14 + Math.round(3 * Math.sin(f * 0.07));
+      for (i = 0; i < BAL.length; i++) { g.fillStyle = INK[BAL[i][2]]; g.fillRect(bx + BAL[i][0], by + BAL[i][1], 1, 1); }
+      if (night > 0.3 && (f & 1)) { g.fillStyle = "#ffe08a"; g.fillRect(bx + 6, by + 13, 1, 1); }
+    };
+  };
+
+  /* Pixel Optical Bench: its own saturated-absorption example, shrunk to a thumbnail */
+  SCENES.bench = function (W, g) {
+    var bg = document.createElement("canvas"), c, ox = Math.floor((W - BASE) / 2), x, y, i;
+    bg.width = W; bg.height = H; c = bg.getContext("2d");
+    function R(x, y, w, h, col) { c.fillStyle = col; c.fillRect(x, y, w, h); }
+    R(0, 0, W, H, "#1b1e2e");
+    R(2, 3, W - 4, H - 6, "#a9afc3"); R(2, 3, W - 4, 1, "#d3d7e5"); R(2, H - 4, W - 4, 1, "#7a819b"); R(3, H - 3, W - 4, 1, "#0d0f1c");
+    for (y = 7; y < H - 5; y += 4) for (x = 5 + ((ox + 3) % 4); x < W - 4; x += 4) R(x, y, 1, 1, "#6d7490");
+    /* beam paths in table coordinates: out to the experiment, down through the cell, and back to the photodiode */
+    var PATHS = [
+      [[24, 11], [92, 11], [92, 28], [103, 28]],
+      [[54, 11], [54, 46], [97, 46]],
+      [[97, 47], [36, 47]]
+    ];
+    PATHS.forEach(function (p, n) {
+      for (i = 0; i < p.length - 1; i++) {
+        var x0 = Math.min(p[i][0], p[i + 1][0]), y0 = Math.min(p[i][1], p[i + 1][1]);
+        var w = Math.abs(p[i + 1][0] - p[i][0]) + 1, h = Math.abs(p[i + 1][1] - p[i][1]) + 1;
+        if (n < 2) { c.globalAlpha = 0.28; R(ox + x0 - 1, y0 - 1, w + 2, h + 2, "#ff4d5a"); c.globalAlpha = 1; }
+        R(ox + x0, y0, w, h, n < 2 ? "#f0364a" : "#ff8a94");
+      }
+    });
+    /* laser, isolator, cubes, mirrors, lens, cell, waveplate, fibre, photodiode */
+    R(ox + 8, 7, 16, 9, "#2a2f4c"); R(ox + 8, 7, 16, 1, "#565d88"); R(ox + 8, 15, 16, 1, "#14172b"); R(ox + 11, 10, 5, 3, "#ffcf5a"); R(ox + 23, 10, 1, 3, "#8fd8ff");
+    R(ox + 31, 8, 7, 7, "#3a3f60"); R(ox + 32, 9, 5, 5, "#d9a441"); R(ox + 32, 9, 5, 1, "#f4cf7a");
+    [[54, 11], [54, 46]].forEach(function (p) {
+      R(ox + p[0] - 3, p[1] - 3, 7, 7, "#2b6a9a"); R(ox + p[0] - 2, p[1] - 2, 5, 5, "#8fdcff");
+      for (i = -2; i <= 2; i++) R(ox + p[0] + i, p[1] + i, 1, 1, "#2b6a9a");
+    });
+    [[92, 11], [92, 28]].forEach(function (p) {
+      for (i = -3; i <= 3; i++) { R(ox + p[0] + i, p[1] + i, 2, 1, "#20243c"); R(ox + p[0] + i - 1, p[1] + i, 1, 1, "#eaf6ff"); }
+    });
+    R(ox + 44, 43, 2, 8, "#d8f3ff"); R(ox + 43, 45, 4, 4, "#d8f3ff"); R(ox + 44, 45, 2, 4, "#8fd8ff");
+    R(ox + 62, 42, 18, 9, "#3a3f60"); R(ox + 63, 43, 16, 7, "#221a36"); R(ox + 63, 43, 16, 1, "#8fd8ff"); R(ox + 63, 49, 16, 1, "#8fd8ff");
+    R(ox + 85, 42, 2, 9, "#b08cff"); R(ox + 84, 42, 4, 1, "#5d4a94"); R(ox + 84, 50, 4, 1, "#5d4a94");
+    R(ox + 98, 42, 3, 9, "#20243c"); R(ox + 97, 42, 1, 9, "#eaf6ff");
+    R(ox + 103, 25, 6, 7, "#2a2f4c"); R(ox + 103, 25, 6, 1, "#565d88"); R(ox + 109, 28, W, 1, "#d9b23c");
+    R(ox + 30, 43, 7, 8, "#2a2f4c"); R(ox + 30, 43, 7, 1, "#565d88"); R(ox + 32, 48, 2, 2, "#7dff9a");
+    tag(c, "ECDL", ox + 9, 19, "#1b1e2e", "#eef0ff"); tag(c, "TO MOT", ox + 86, 35, "#1b1e2e", "#eef0ff");
+    tag(c, "RB CELL", ox + 58, 54, "#1b1e2e", "#eef0ff"); tag(c, "PD", ox + 30, 54, "#1b1e2e", "#eef0ff");
+    /* walk each path once so light can be drawn running along it */
+    var RUNS = PATHS.map(function (p) {
+      var pts = [];
+      for (i = 0; i < p.length - 1; i++) {
+        var dx = Math.sign(p[i + 1][0] - p[i][0]), dy = Math.sign(p[i + 1][1] - p[i][1]), qx = p[i][0], qy = p[i][1];
+        while (qx !== p[i + 1][0] || qy !== p[i + 1][1]) { pts.push([qx, qy]); qx += dx; qy += dy; }
+      }
+      return pts;
+    });
+    return function (f) {
+      g.drawImage(bg, 0, 0);
+      g.globalAlpha = 0.35 + 0.25 * Math.sin(f * 0.35);
+      g.fillStyle = "#ff7aa8"; g.fillRect(ox + 64, 45, 14, 3);
+      g.globalAlpha = 1;
+      g.fillStyle = "#ffe3e6";
+      RUNS.forEach(function (pts, n) {
+        for (i = (f + n * 3) % 7; i < pts.length; i += 7) {
+          var p = pts[i];
+          if (p[0] > 61 && p[0] < 80 && p[1] > 44) continue;      /* hidden inside the cell */
+          g.fillRect(ox + p[0], p[1], 1, 1);
+        }
+      });
+      if (f % 20 < 10) { g.fillStyle = "#7dff9a"; g.fillRect(ox + 34, 44, 1, 1); }
+    };
+  };
+  /* Beam Profiler: a jittering beam in a stepped colour map, its 1/e2 contour, and stair-step X and Y profiles */
+  SCENES.profiler = function (W, g) {
+    var ox = Math.floor((W - BASE) / 2), N = 48, img = g.createImageData(N, N), px = new Uint32Array(img.data.buffer);
+    var MAP = ["#0b0d18", "#14205a", "#1f47b8", "#2a8fd6", "#3fd0c0", "#a7f070", "#ffcd75", "#ef7d57", "#f4f4f4"].map(C);
+    function plot(x0, y0, w, h, col, centre, width, name, f) {
+      g.fillStyle = "#566c86"; g.fillRect(x0, y0, w, h);
+      g.fillStyle = "#11131f"; g.fillRect(x0 + 1, y0 + 1, w - 2, h - 2);
+      for (var i = 0; i < w - 2; i++) {
+        var pos = i * N / (w - 2), fit = Math.exp(-2 * (pos - centre) * (pos - centre) / (width * width));
+        var v = Math.max(0, fit + (hash(i * 71 + (f >> 1) * 13 + x0 + y0) - 0.5) * 0.09);
+        var top = Math.round(Math.min(1, v) * (h - 6)), ft = Math.round(fit * (h - 6));
+        g.globalAlpha = 0.3; g.fillStyle = col; g.fillRect(x0 + 1 + i, y0 + h - 2 - top, 1, top + 1);
+        g.globalAlpha = 1; g.fillRect(x0 + 1 + i, y0 + h - 2 - top, 1, 1);
+        g.fillStyle = "#f4f4f4"; if (i % 2 === 0) g.fillRect(x0 + 1 + i, y0 + h - 2 - ft, 1, 1);
+      }
+      text(g, name, x0 + 3, y0 + 3, col);
+    }
+    return function (f) {
+      var cx = 23.5 + 1.6 * Math.sin(f * 0.11) + 0.8 * Math.sin(f * 0.37), cy = 23.5 + 1.2 * Math.cos(f * 0.09);
+      var wx = 12 + 0.8 * Math.sin(f * 0.05), wy = 7.5 + 0.5 * Math.cos(f * 0.07), x, y, a;
+      g.fillStyle = "#1a1c2c"; g.fillRect(0, 0, W, H);
+      for (y = 0; y < N; y++) for (x = 0; x < N; x++) {
+        var dx = x - cx, dy = y - cy;
+        var v = Math.exp(-2 * (dx * dx / (wx * wx) + dy * dy / (wy * wy))) + (hash(x * 57 + y * 131 + (f >> 1) * 977) - 0.5) * 0.07;
+        px[y * N + x] = MAP[Math.max(0, Math.min(8, Math.floor(v * 8.7)))];
+      }
+      g.fillStyle = "#566c86"; g.fillRect(ox + 3, 3, N + 2, N + 2);
+      g.putImageData(img, ox + 4, 4);
+      g.globalAlpha = 0.45;
+      g.fillStyle = "#ff8a5c"; g.fillRect(ox + 4, 4 + Math.round(cy), N, 1);
+      g.fillStyle = "#5ad6a4"; g.fillRect(ox + 4 + Math.round(cx), 4, 1, N);
+      g.globalAlpha = 1;
+      g.fillStyle = "#ffffff";
+      for (a = 0; a < 52; a++) {
+        if (a % 4 === 3) continue;
+        x = Math.round(cx + wx * Math.cos(a * 0.1208)); y = Math.round(cy + wy * Math.sin(a * 0.1208));
+        if (x >= 0 && x < N && y >= 0 && y < N) g.fillRect(ox + 4 + x, 4 + y, 1, 1);
+      }
+      plot(ox + 58, 3, 50, 23, "#ff8a5c", cx, wx, "X", f);
+      plot(ox + 58, 29, 50, 23, "#5ad6a4", cy, wy, "Y", f);
+      if (f % 12 < 8) { g.fillStyle = "#a7f070"; g.fillRect(ox + 4, 57, 2, 2); }
+      text(g, "LIVE", ox + 8, 56, "#a7f070");
+      text(g, "WIDTH", ox + 58, 56, "#73eff7"); text(g, "FIT", ox + 83, 56, "#566c86"); text(g, "M2", ox + 100, 56, "#566c86");
+      var pop = f % 96;
+      if (pop < 15) tag(g, "+1 SAVE", ox + 15, 12 - Math.floor(pop / 3), "#ffcd75", "#1a1c2c");
+    };
+  };
+
+  /* arXiv Paper Monitor: at 01:00 UTC an envelope sets off and the day's matches land in the digest */
+  SCENES.digest = function (W, g) {
+    var ox = Math.floor((W - BASE) / 2);
+    var ROWS = [[58, 40, "ATOM-PH"], [46, 52, "QUANT-PH"], [62, 34, "QUANT-GAS"], [50, 44, "OPTICS"]];
+    var ENV = ["kkkkkkkkkkk", "kwkwwwwwkwk", "kwwkwwwkwwk", "kwwwkkkwwwk", "kwwwwwwwwwk", "kwwwwwwwwwk", "kkkkkkkkkkk"];
+    return function (f) {
+      var c = f % 130, i, j, x, y, shown = 0;
+      g.fillStyle = "#141a24"; g.fillRect(0, 0, W, H);
+      /* the clock that starts the run */
+      for (j = -9; j <= 9; j++) {
+        var hw = Math.floor(Math.sqrt(90.25 - j * j));
+        g.fillStyle = "#2c3e50"; g.fillRect(ox + 16 - hw, 17 + j, 2 * hw + 1, 1);
+        if (Math.abs(j) < 8) { hw = Math.floor(Math.sqrt(56.25 - j * j)); g.fillStyle = "#eef1f5"; g.fillRect(ox + 16 - hw, 17 + j, 2 * hw + 1, 1); }
+      }
+      g.fillStyle = "#2c3e50"; g.fillRect(ox + 16, 11, 1, 7); g.fillRect(ox + 17, 14, 1, 1); g.fillRect(ox + 18, 13, 1, 1); g.fillRect(ox + 16, 17, 1, 1);
+      var ang = c / 130 * 6.2832 - 1.5708;
+      g.fillStyle = "#ef7d57"; g.fillRect(ox + 16 + Math.round(6 * Math.cos(ang)), 17 + Math.round(6 * Math.sin(ang)), 1, 1);
+      text(g, "01:00", ox + 7, 31, "#eef1f5"); text(g, "UTC", ox + 11, 38, "#95a5a6");
+      if (c < 26) {
+        x = ox + 3 + Math.round(c * 1.05); y = 49 - Math.round(4 * Math.sin(c / 26 * 3.1416));
+        for (j = 0; j < ENV.length; j++) for (i = 0; i < 11; i++) {
+          g.fillStyle = ENV[j].charAt(i) === "k" ? "#2c3e50" : "#eef1f5"; g.fillRect(x + i, y + j, 1, 1);
+        }
+        g.fillStyle = "#3498db"; g.fillRect(x - 3, y + 2, 2, 1); g.fillRect(x - 5, y + 4, 3, 1);
+      }
+      /* the digest itself */
+      g.fillStyle = "#eef1f5"; g.fillRect(ox + 36, 4, 73, 57);
+      g.fillStyle = "#2c3e50"; g.fillRect(ox + 36, 4, 73, 9);
+      text(g, "DAILY DIGEST", ox + 39, 6, "#eef1f5");
+      for (i = 0; i < ROWS.length; i++) {
+        var born = 28 + i * 9, y0 = 16 + i * 11;
+        if (c < born || c > 118 + i * 3) continue;
+        shown++;
+        g.fillStyle = "#3498db"; g.fillRect(ox + 39, y0, ROWS[i][0], 2);
+        g.fillStyle = "#95a5a6"; g.fillRect(ox + 39, y0 + 3, ROWS[i][1], 1);
+        text(g, ROWS[i][2], ox + 39, y0 + 5, "#7f8c8d");
+        if (c - born < 14 && ((c - born) % 6) < 4) tag(g, "NEW", ox + 96, y0 + 5, "#ffcd75", "#2c3e50");
+      }
+      text(g, String(shown), ox + 103, 6, "#ffcd75");
+    };
+  };
+
+  /* size each preview to whole pixels, and only animate the ones on screen */
+  var REST = { atlas: 205, bench: 4, profiler: 40, digest: 100 };
+  var live = [];
+  shots.forEach(function (cv) {
+    var name = cv.getAttribute("data-scene"), g = cv.getContext ? cv.getContext("2d") : null;
+    if (!SCENES[name] || !g) return;
+    live.push({ cv: cv, g: g, name: name, W: 0, S: 0, draw: null, seen: !window.IntersectionObserver, f: still ? REST[name] : live.length * 17 });
+  });
+  function fit(st) {
+    var host = st.cv.parentNode, cs = window.getComputedStyle(host);
+    var cw = host.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    if (!(cw > 0)) return;
+    var s = Math.max(1, Math.min(4, Math.floor(cw / BASE))), w = Math.max(BASE, Math.floor(cw / s));
+    if (w === st.W && s === st.S) return;
+    st.W = w; st.S = s;
+    st.cv.width = w; st.cv.height = H;
+    st.cv.style.width = (w * s) + "px"; st.cv.style.height = (H * s) + "px";
+    st.draw = SCENES[st.name](w, st.g);
+    st.draw(st.f);
+  }
+  live.forEach(function (st) {
+    fit(st);
+    if (window.ResizeObserver) new ResizeObserver(function () { fit(st); }).observe(st.cv.parentNode);
+    if (window.IntersectionObserver) new IntersectionObserver(function (es) { st.seen = es[es.length - 1].isIntersecting; }).observe(st.cv);
+  });
+  if (!window.ResizeObserver) window.addEventListener("resize", function () { live.forEach(fit); });
+  if (!still && live.length) {
+    var last = 0;
+    var tick = function (now) {
+      if (!document.hidden && now - last > 95) {
+        last = now;
+        for (var i = 0; i < live.length; i++) if (live[i].seen && live[i].draw) { live[i].f++; live[i].draw(live[i].f); }
       }
       window.requestAnimationFrame(tick);
     };
