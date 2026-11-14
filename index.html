@@ -603,6 +603,15 @@ h2 small { order: 3; font-size: 8px; letter-spacing: 1px; color: var(--dim); whi
 .fine { font-size: 20px; line-height: 1.1; color: var(--dim); margin-top: 12px; }
 .links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: auto; padding-top: 20px; }
 .btn.sm { font-size: 20px; padding: 7px 12px 8px; }
+.pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 22px; margin-top: 30px; }
+.pager .btn:disabled { opacity: 0.35; cursor: default; transform: none; }
+.pager .btn:disabled:hover { background: var(--panel-2); }
+.pg-dots { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.pg-dot { width: 14px; height: 14px; padding: 0; border: 0; cursor: pointer; background: var(--edge-soft); box-shadow: 3px 3px 0 0 var(--shadow); }
+.pg-dot:hover { background: var(--edge); }
+.pg-dot[aria-current="true"] { background: var(--c, var(--nm780)); }
+.pg-dot:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.pg-label { font-family: var(--font-display); font-size: 10px; line-height: 1; color: var(--muted); -webkit-font-smoothing: none; }
 
 /* path */
 .map-frame { padding: 10px; background: #0f1030; }
@@ -796,7 +805,7 @@ footer p + p { margin-top: 4px; }
 
 <header class="splash" id="top">
   <canvas id="sky" width="320" height="180" role="img" aria-label="Animated pixel-art night view of Dunedin. The aurora australis and the Southern Cross hang over dark hills, the University of Otago clocktower and a lab whose window glows with laser light, all reflected in the harbour. A small figure in a lab coat and green goggles watches from the shore."></canvas>
-  <p class="corner tl" aria-hidden="true">PAPERS <b>06</b><span> BUILDS <b>05</b></span></p>
+  <p class="corner tl" aria-hidden="true">PAPERS <b>06</b><span> BUILDS <b id="builds-n">05</b></span></p>
   <p class="corner tr" aria-hidden="true">45.87&deg;S 170.50&deg;E</p>
   <div class="title-in">
     <p class="eyebrow">Postdoctoral researcher &middot; experimental AMO physics</p>
@@ -835,7 +844,7 @@ footer p + p { margin-top: 4px; }
     <div class="win stat rv"><span class="num" data-count="6">6</span><span>peer-reviewed journal articles, 2023 to 2025</span></div>
     <div class="win stat rv" style="--c: var(--nm480); --d: 0.1s"><span class="num" data-count="4">4</span><span>of them as first or co-first author</span></div>
     <div class="win stat rv" style="--c: var(--nm405); --d: 0.2s"><span class="num small">NOW</span><span>Feshbach resonances in an <sup>87</sup>Rb condensate</span></div>
-    <div class="win stat rv" style="--c: var(--amber); --d: 0.3s"><span class="num" data-count="5">5</span><span>favourite projects built with AI, from lab tools to a game</span></div>
+    <div class="win stat rv" style="--c: var(--amber); --d: 0.3s"><span class="num" id="builds-count" data-count="5">5</span><span>favourite projects built with AI, from lab tools to a game</span></div>
   </div>
 </section>
 
@@ -969,7 +978,7 @@ footer p + p { margin-top: 4px; }
 
 <section id="builds">
   <h2 style="--c: var(--nm405)"><span class="lv">03</span>Built with AI<small>Workshop</small></h2>
-  <p class="intro rv">I love using LLMs to build things that help in my daily life and work. AI coding agents write most of the code; my part is knowing exactly what I want and checking that it really works. These five are my favourites.</p>
+  <p class="intro rv">I love using LLMs to build things that help in my daily life and work. AI coding agents write most of the code; my part is knowing exactly what I want and checking that it really works. Here are my favourites, newest first.</p>
   <div class="builds">
 
     <article class="win build hot rv" style="--c: var(--nm405)">
@@ -1044,7 +1053,68 @@ footer p + p { margin-top: 4px; }
     </article>
 
   </div>
+  <nav class="pager" id="builds-pager" aria-label="More projects" hidden>
+    <button class="btn sm" type="button" data-step="-1">&lt; Prev</button>
+    <div class="pg-dots" role="group" aria-label="Pages"></div>
+    <span class="pg-label" aria-live="polite"></span>
+    <button class="btn sm" type="button" data-step="1">Next &gt;</button>
+  </nav>
 </section>
+<script>
+/* ---------- built with AI: four cards a page, newest first; counts follow the number of cards ---------- */
+(function () {
+  "use strict";
+  var PER = 4;
+  var cards = Array.prototype.slice.call(document.querySelectorAll("#builds .builds > .build"));
+  var n = cards.length, pages = Math.ceil(n / PER), page = 0;
+  var badge = document.getElementById("builds-n"), stat = document.getElementById("builds-count");
+  if (badge) badge.textContent = (n < 10 ? "0" : "") + n;
+  if (stat) { stat.setAttribute("data-count", String(n)); stat.textContent = String(n); }
+  var nav = document.getElementById("builds-pager");
+  if (!nav || pages < 2) return;
+  var still = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var prev = nav.querySelector('[data-step="-1"]'), next = nav.querySelector('[data-step="1"]');
+  var dotsBox = nav.querySelector(".pg-dots"), label = nav.querySelector(".pg-label"), dots = [];
+  for (var i = 0; i < pages; i++) {
+    var d = document.createElement("button");
+    d.type = "button"; d.className = "pg-dot"; d.setAttribute("data-page", String(i));
+    d.setAttribute("aria-label", "Page " + (i + 1) + " of " + pages);
+    dotsBox.appendChild(d); dots.push(d);
+  }
+  function show(p, scroll) {
+    page = Math.max(0, Math.min(pages - 1, p));
+    cards.forEach(function (c, k) {
+      var on = Math.floor(k / PER) === page;
+      if (on && c.hidden && !still && c.classList.contains("in")) {
+        /* replay the rise-in so turning a page feels like loading a new screen */
+        c.classList.remove("in"); void c.offsetWidth; c.classList.add("in");
+      }
+      c.hidden = !on;
+    });
+    dots.forEach(function (d, k) { d.setAttribute("aria-current", k === page ? "true" : "false"); });
+    prev.disabled = page === 0; next.disabled = page === pages - 1;
+    label.textContent = "PAGE " + (page + 1) + "/" + pages;
+    if (scroll) {
+      var sec = document.getElementById("builds"), top = sec.getBoundingClientRect().top;
+      if (top < 0 || top > window.innerHeight * 0.5) sec.scrollIntoView({ block: "start", behavior: still ? "auto" : "smooth" });
+    }
+  }
+  nav.addEventListener("click", function (e) {
+    var b = e.target && e.target.closest ? e.target.closest("button") : null;
+    if (!b || b.disabled) return;
+    if (b.hasAttribute("data-step")) show(page + Number(b.getAttribute("data-step")), true);
+    else if (b.hasAttribute("data-page")) show(Number(b.getAttribute("data-page")), true);
+  });
+  nav.addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    show(page + (e.key === "ArrowRight" ? 1 : -1), false);
+    dots[page].focus();
+  });
+  nav.hidden = false;
+  show(0, false);
+})();
+</script>
 
 <section id="path">
   <h2 style="--c: var(--nm405)"><span class="lv">04</span>Path<small>World map</small></h2>
