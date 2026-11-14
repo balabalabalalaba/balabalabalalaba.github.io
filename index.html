@@ -796,7 +796,7 @@ footer p + p { margin-top: 4px; }
 
 <header class="splash" id="top">
   <canvas id="sky" width="320" height="180" role="img" aria-label="Animated pixel-art night view of Dunedin. The aurora australis and the Southern Cross hang over dark hills, the University of Otago clocktower and a lab whose window glows with laser light, all reflected in the harbour. A small figure in a lab coat and green goggles watches from the shore."></canvas>
-  <p class="corner tl" aria-hidden="true">PAPERS <b>06</b><span> BUILDS <b>04</b></span></p>
+  <p class="corner tl" aria-hidden="true">PAPERS <b>06</b><span> BUILDS <b>05</b></span></p>
   <p class="corner tr" aria-hidden="true">45.87&deg;S 170.50&deg;E</p>
   <div class="title-in">
     <p class="eyebrow">Postdoctoral researcher &middot; experimental AMO physics</p>
@@ -835,7 +835,7 @@ footer p + p { margin-top: 4px; }
     <div class="win stat rv"><span class="num" data-count="6">6</span><span>peer-reviewed journal articles, 2023 to 2025</span></div>
     <div class="win stat rv" style="--c: var(--nm480); --d: 0.1s"><span class="num" data-count="4">4</span><span>of them as first or co-first author</span></div>
     <div class="win stat rv" style="--c: var(--nm405); --d: 0.2s"><span class="num small">NOW</span><span>Feshbach resonances in an <sup>87</sup>Rb condensate</span></div>
-    <div class="win stat rv" style="--c: var(--amber); --d: 0.3s"><span class="num" data-count="4">4</span><span>favourite projects built with AI, from lab tools to a game</span></div>
+    <div class="win stat rv" style="--c: var(--amber); --d: 0.3s"><span class="num" data-count="5">5</span><span>favourite projects built with AI, from lab tools to a game</span></div>
   </div>
 </section>
 
@@ -969,7 +969,7 @@ footer p + p { margin-top: 4px; }
 
 <section id="builds">
   <h2 style="--c: var(--nm405)"><span class="lv">03</span>Built with AI<small>Workshop</small></h2>
-  <p class="intro rv">I love using LLMs to build things that help in my daily life and work. AI coding agents write most of the code; my part is knowing exactly what I want and checking that it really works. These four are my favourites.</p>
+  <p class="intro rv">I love using LLMs to build things that help in my daily life and work. AI coding agents write most of the code; my part is knowing exactly what I want and checking that it really works. These five are my favourites.</p>
   <div class="builds">
 
     <article class="win build hot rv" style="--c: var(--nm405)">
@@ -1016,7 +1016,21 @@ footer p + p { margin-top: 4px; }
       </div>
     </article>
 
-    <article class="win build hot rv" style="--c: var(--amber); --d: 0.1s">
+    <article class="win build hot rv" style="--c: var(--nm780); --d: 0.1s">
+      <div class="bar"><span>WEB APP</span><span>OCT 2026</span></div>
+      <div class="shot"><canvas data-scene="iron" width="125" height="64" role="img" aria-label="Animated pixel-art preview of the workout log: a little lifter presses a barbell overhead, each finished set gets a green tick, a rest timer counts down from 1:30, and the last, heavier set earns a PR badge and fills the level bar."></canvas></div>
+      <div class="build-body">
+        <h3>Pixel Iron Log</h3>
+        <p class="pitch">A pixel-art gym log for my phone: log sets as I lift, a rest timer that beeps me back to the bar, personal records and stats, and a little lifter who levels up.</p>
+        <ul class="tech" aria-label="Built with"><li>HTML + JS</li><li>WEB AUDIO</li><li>CLAUDE ARTIFACT</li></ul>
+        <p class="links">
+          <a class="btn sm primary" href="https://balabalabalalaba.github.io/pixel-iron-log/">Open in the browser</a>
+          <a class="btn sm" href="https://github.com/balabalabalalaba/pixel-iron-log" aria-label="GitHub: Pixel Iron Log">GitHub</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="win build hot rv" style="--c: var(--amber)">
       <div class="bar"><span>BOT</span><span>JAN 2026</span></div>
       <div class="shot"><canvas data-scene="digest" width="125" height="64" role="img" aria-label="Animated pixel-art preview: a clock reads 01:00 UTC, an envelope sets off, and four paper entries tagged with arXiv categories appear in a daily digest."></canvas></div>
       <div class="build-body">
@@ -1111,7 +1125,7 @@ footer p + p { margin-top: 4px; }
     </article>
     <article class="win hobby hot rv" style="--c: var(--nm480); --d: 0.24s">
       <header><canvas class="icon" data-sprite="lift" width="16" height="16" aria-hidden="true"></canvas><h3>Walking and lifting</h3></header>
-      <p>I walk to work every day, about 10,000 steps, and track short gym sessions in a pixel workout log of my own.</p>
+      <p>I walk to work every day, about 10,000 steps, and track short gym sessions in a <a href="https://balabalabalalaba.github.io/pixel-iron-log/">pixel workout log</a> of my own.</p>
     </article>
   </div>
 </section>
@@ -2939,8 +2953,67 @@ footer p + p { margin-top: 4px; }
     };
   };
 
+  /* Pixel Iron Log: the app's own lifter presses three sets; each gets a tick and a rest countdown, the last is a PR */
+  SCENES.iron = function (W, g) {
+    var ox = Math.floor((W - BASE) / 2);
+    var INK = { k: "#2a1810", s: "#f0b98a", h: "#5a3320", t: "#e8765a", p: "#35506a", b: "#c9cdd3", r: "#e8765a", c: "#7cc0d8" };
+    /* lifter() from the app, in two poses: bar locked out overhead, and bar racked at the shoulders */
+    function pose(up) {
+      var cells = [], body = {
+        4: ".......s..hhhhh..s", 5: ".......s..sksks..s", 6: "........s.sssss.s", 7: ".........ttttttt",
+        8: ".........ttttttt", 9: "..........ttttt", 10: "..........kkkkk", 11: "..........ppppp",
+        12: "..........pp.pp", 13: ".........ppp.ppp", 14: ".........pp...pp", 15: "........kkk...kkk"
+      };
+      if (!up) { body[4] = "..........hhhhh"; body[5] = "..........sksks"; body[6] = "..........sssss"; body[8] = "........sttttttts"; }
+      Object.keys(body).forEach(function (y) {
+        for (var x = 0; x < body[y].length; x++) if (body[y].charAt(x) !== ".") cells.push([x, +y, body[y].charAt(x)]);
+      });
+      var by = up ? 3 : 7, x, i, y;
+      for (x = 1; x <= 23; x++) cells.push([x, by, "b"]);
+      if (up) { cells.push([7, 3, "s"]); cells.push([17, 3, "s"]); }
+      for (i = 0; i < 4; i++) for (y = by - 2; y <= by + 2; y++) { cells.push([3 + i, y, i % 2 ? "c" : "r"]); cells.push([21 - i, y, i % 2 ? "c" : "r"]); }
+      return cells;
+    }
+    var UP = pose(true), DOWN = pose(false);
+    var SETS = ["40X5", "40X5", "45X5"], SET = 32, END = 3 * SET, LOOP = 128;
+    function R(x, y, w, h, col) { g.fillStyle = col; g.fillRect(x, y, w, h); }
+    return function (f) {
+      var c = f % LOOP, k = Math.min(2, Math.floor(c / SET)), u = c - k * SET, i, j;
+      var done = c >= END ? 3 : k + (u >= 18 ? 1 : 0), lifting = c < END && u < 18;
+      var up = lifting && (u % 6) >= 2 && (u % 6) <= 4;
+      R(0, 0, W, H, "#1b120e");
+      for (j = 3; j < H; j += 6) for (i = 3 + (j % 12 ? 3 : 0); i < W; i += 6) R(i, j, 1, 1, "#261912");
+      /* the lifter on the gym floor, at twice the app's pixel size */
+      var lx = ox + 4, ly = 21, cells = up ? UP : DOWN;
+      R(0, 53, W, 2, "#6d4c36");
+      for (i = 0; i < cells.length; i++) { g.fillStyle = INK[cells[i][2]]; g.fillRect(lx + cells[i][0] * 2, ly + cells[i][1] * 2, 2, 2); }
+      /* level and XP, filling up after the PR */
+      var xp = c >= END + 10 ? 3 : 2;
+      text(g, "LV 3", ox + 4, 4, "#f1dfbd");
+      for (i = 0; i < 5; i++) R(ox + 22 + i * 5, 4, 4, 5, i < xp ? "#e8765a" : "#3a281d");
+      if (c >= END && c < END + 22 && (c & 2)) tag(g, "NEW PR", ox + 16, 13, "#e8765a", "#1b120e");
+      /* the log: three sets that tick off, then the rest timer */
+      var px = ox + 60;
+      R(px, 3, 50, 57, "#f1dfbd"); R(px + 1, 4, 48, 55, "#2a1c15");
+      text(g, "PRESS", px + 4, 7, "#f1dfbd");
+      for (i = 0; i < 3; i++) {
+        var ry = 15 + i * 9, on = i < done;
+        text(g, SETS[i], px + 4, ry + 1, on ? "#d4ae82" : "#f1dfbd");
+        R(px + 39, ry - 1, 7, 7, on ? "#94c066" : "#f1dfbd");
+        if (on) { R(px + 40, ry + 2, 1, 1, "#1b120e"); R(px + 41, ry + 3, 1, 1, "#1b120e"); R(px + 42, ry + 2, 1, 1, "#1b120e"); R(px + 43, ry + 1, 1, 1, "#1b120e"); R(px + 44, ry, 1, 1, "#1b120e"); }
+        else { R(px + 40, ry, 5, 5, "#2a1c15"); }
+        if (i === 2 && on && (c < END + 22 ? (c & 2) : 1)) tag(g, "PR", px + 30, ry + 1, "#e8765a", "#1b120e");
+      }
+      var resting = c < END && u >= 18, left = resting ? 90 - Math.round((u - 18) / 14 * 90) : 90;
+      text(g, "REST", px + 4, 44, "#d4ae82");
+      text(g, Math.floor(left / 60) + ":" + (left % 60 < 10 ? "0" : "") + (left % 60), px + 28, 44, resting ? "#f1dfbd" : "#6d4c36");
+      R(px + 4, 51, 42, 4, "#6d4c36"); R(px + 5, 52, 40, 2, "#1b120e");
+      if (resting) R(px + 5, 52, Math.round(40 * (u - 18) / 14), 2, "#7cc0d8");
+    };
+  };
+
   /* size each preview to whole pixels, and only animate the ones on screen */
-  var REST = { atlas: 205, bench: 4, profiler: 40, digest: 100 };
+  var REST = { atlas: 205, bench: 4, profiler: 40, digest: 100, iron: 108 };
   var live = [];
   shots.forEach(function (cv) {
     var name = cv.getAttribute("data-scene"), g = cv.getContext ? cv.getContext("2d") : null;
