@@ -590,7 +590,6 @@ h2 small { order: 3; font-size: 8px; letter-spacing: 1px; color: var(--dim); whi
 .build-body { flex: 1; display: flex; flex-direction: column; padding: 18px 20px 20px; }
 .build h3 { font-family: var(--font-head); font-size: 30px; line-height: 1; letter-spacing: 0.5px; }
 .pitch { margin-top: 8px; line-height: 1.12; }
-.build .bullets { margin-top: 14px; color: var(--muted); font-size: 23px; line-height: 1.1; }
 .tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .tech li {
   font-family: var(--font-display);
@@ -978,14 +977,9 @@ footer p + p { margin-top: 4px; }
       <div class="shot"><canvas data-scene="atlas" width="125" height="64" role="img" aria-label="Animated pixel-art preview: a striped hot-air balloon drifts over green hills with three small houses while the sky turns from morning to day, dusk and a night of rising lanterns."></canvas></div>
       <div class="build-body">
         <h3>Equestria Atlas</h3>
-        <p class="pitch">A fan-made pixel-art balloon adventure across the world of My Little Pony. Claude wrote every script; I worked as the supervisor.</p>
-        <ul class="bullets">
-          <li>Fly a balloon over a world map, land in 20 places and mend a small trouble in each one.</li>
-          <li>One in-game day lasts 24 real minutes, and the places are relit for the hour, from morning to a night full of lanterns.</li>
-          <li>Every scene is drawn by code and the 24 chiptune loops are synthesised.</li>
-        </ul>
-        <ul class="tech" aria-label="Built with"><li>PYTHON</li><li>PYGAME</li><li>NUMPY</li><li>GITHUB ACTIONS</li></ul>
-        <p class="fine">Fan-made and non-commercial; landscapes only, no characters. Not affiliated with Hasbro.</p>
+        <p class="pitch">A fan-made pixel-art balloon adventure across the world of My Little Pony: land in 20 places and mend a small trouble in each, from morning to a night of lanterns.</p>
+        <ul class="tech" aria-label="Built with"><li>PYTHON</li><li>PYGAME</li><li>NUMPY</li></ul>
+        <p class="fine">Non-commercial; landscapes only, no characters. Not affiliated with Hasbro.</p>
         <p class="links">
           <a class="btn sm primary" href="https://github.com/balabalabalalaba/equestria-atlas/releases/latest" aria-label="Download for Windows: Equestria Atlas">Download for Windows</a>
           <a class="btn sm" href="https://www.bilibili.com/video/BV1Ny4v65EDd/">Watch the video</a>
@@ -999,14 +993,8 @@ footer p + p { margin-top: 4px; }
       <div class="shot"><canvas data-scene="bench" width="125" height="64" role="img" aria-label="Animated pixel-art preview of an optical breadboard: a laser beam passes an isolator and a beam-splitter cube, one arm goes by two mirrors to a fibre, the other through a rubidium cell and a wave plate to a mirror and back to a photodiode."></canvas></div>
       <div class="build-body">
         <h3>Pixel Optical Bench</h3>
-        <p class="pitch">A pixel-art editor for laying out optical tables in the browser. It traces the laser beams and checks the setup.</p>
-        <ul class="bullets">
-          <li>77 part types, from lasers and wave plates to vacuum chambers and rack electronics, each a pixel sprite drawn in code.</li>
-          <li>Beams carry power, polarisation and optical frequency; rule-based checks cover laser locks, MOTs and photon-pair count rates.</li>
-          <li>17 built-in examples with guided tours, including BEC machines, optical lattice clocks and heralded single photons.</li>
-        </ul>
-        <ul class="tech" aria-label="Built with"><li>REACT</li><li>KONVA</li><li>NOTHING TO INSTALL</li></ul>
-        <p class="fine">Rule-based checks, not a physics simulation. Best in Chrome or Edge.</p>
+        <p class="pitch">A browser editor for laying out optical tables in pixel art. It traces the laser beams through 77 kinds of parts and checks the setup, with 17 guided examples.</p>
+        <ul class="tech" aria-label="Built with"><li>REACT</li><li>KONVA</li></ul>
         <p class="links">
           <a class="btn sm primary" href="https://balabalabalalaba.github.io/pixel-optical-bench/">Open in the browser</a>
           <a class="btn sm" href="https://github.com/balabalabalalaba/pixel-optical-bench" aria-label="GitHub: Pixel Optical Bench">GitHub</a>
@@ -1019,14 +1007,8 @@ footer p + p { margin-top: 4px; }
       <div class="shot"><canvas data-scene="profiler" width="125" height="64" role="img" aria-label="Animated pixel-art preview of the profiler: a false-colour laser spot with its 1/e-squared contour and crosshair, beside X and Y profile plots with Gaussian fits."></canvas></div>
       <div class="build-body">
         <h3>Beam Profiler</h3>
-        <p class="pitch">A Windows app, built with Claude, that turns a Thorlabs Zelux camera into a live laser beam profiler.</p>
-        <ul class="bullets">
-          <li>Live D4&sigma; widths (ISO 11146 second moments), 1D and 2D Gaussian fits, and M<sup>2</sup> from widths at several positions.</li>
-          <li>A Python engine streams frames over a WebSocket to a plain-JavaScript page; a simulated beam runs with no camera.</li>
-          <li>GitHub Actions runs 31 test functions and a 9-check self-test before it builds the Windows installer.</li>
-        </ul>
-        <ul class="tech" aria-label="Built with"><li>PYTHON</li><li>NUMPY + SCIPY</li><li>FASTAPI</li><li>PLAIN JS</li><li>MIT LICENCE</li></ul>
-        <p class="fine">Needs Windows and Thorlabs' own ThorCam software. Not affiliated with Thorlabs.</p>
+        <p class="pitch">A Windows app that turns a Thorlabs Zelux camera into a live laser beam profiler, with D4&sigma; widths, Gaussian fits and M<sup>2</sup> measurement.</p>
+        <ul class="tech" aria-label="Built with"><li>PYTHON</li><li>NUMPY + SCIPY</li><li>FASTAPI</li></ul>
         <p class="links">
           <a class="btn sm primary" href="https://github.com/balabalabalalaba/zelux-beam-profiler/releases/latest" aria-label="Download for Windows: Beam Profiler">Download for Windows</a>
           <a class="btn sm" href="https://github.com/balabalabalalaba/zelux-beam-profiler" aria-label="GitHub: Beam Profiler">GitHub</a>
@@ -1039,14 +1021,8 @@ footer p + p { margin-top: 4px; }
       <div class="shot"><canvas data-scene="digest" width="125" height="64" role="img" aria-label="Animated pixel-art preview: a clock reads 01:00 UTC, an envelope sets off, and four paper entries tagged with arXiv categories appear in a daily digest."></canvas></div>
       <div class="build-body">
         <h3>arXiv Paper Monitor</h3>
-        <p class="pitch">An early one: a small bot that emails a daily digest of recent arXiv and journal papers matching my Rydberg keywords.</p>
-        <ul class="bullets">
-          <li>Scheduled once a day on GitHub Actions, so there is no server to look after.</li>
-          <li>Filters four arXiv category feeds and 15 journal RSS feeds by keyword, then removes duplicate titles.</li>
-          <li>About 800 lines of Python, almost all written by AI; the first version took about two hours of back-and-forth.</li>
-        </ul>
-        <ul class="tech" aria-label="Built with"><li>PYTHON</li><li>GITHUB ACTIONS</li><li>RSS</li><li>SMTP</li><li>MIT LICENCE</li></ul>
-        <p class="fine">First version January 2026; reworked with Claude in July 2026. The README is in Chinese.</p>
+        <p class="pitch">A small bot that runs daily on GitHub Actions and emails me new arXiv and journal papers matching my Rydberg keywords.</p>
+        <ul class="tech" aria-label="Built with"><li>PYTHON</li><li>GITHUB ACTIONS</li><li>RSS</li></ul>
         <p class="links">
           <a class="btn sm primary" href="https://github.com/balabalabalalaba/arxiv-paper-monitor" aria-label="GitHub: arXiv Paper Monitor">GitHub</a>
         </p>
