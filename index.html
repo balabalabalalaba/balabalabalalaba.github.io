@@ -1251,16 +1251,59 @@ footer p + p { margin-top: 4px; }
   function load(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
 
   /* scroll reveal comes first, so nothing stays hidden if a later part fails */
-  var rv = $$(".rv");
+  var rv = $$(".rv"), reveal = null;
   if (still || !hasIO) rv.forEach(function (el) { el.classList.add("in"); });
   else {
-    var reveal = new IntersectionObserver(function (es) {
+    reveal = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add("in"); reveal.unobserve(e.target); }
       });
     }, { rootMargin: "0px 0px -6% 0px" });
     rv.forEach(function (el) { reveal.observe(el); });
   }
+
+  /* Backup for the observers. Some browsers (seen in Safari) restore the scroll
+     position on reload without ever telling an IntersectionObserver, which left a
+     reloaded section blank. A sweep on load, on returning to the page and after
+     scrolling reveals anything already on screen and starts anything waiting to be seen. */
+  var watchers = [];
+  function onScreen(el, ratio) {
+    var b = el.getBoundingClientRect();
+    if (!b.height) return false;                 // hidden, such as another pager page
+    var shown = Math.min(b.bottom, window.innerHeight * 0.94) - Math.max(b.top, 0);
+    return shown > 0 && shown >= b.height * ratio - 1;
+  }
+  function fire(w) {
+    if (w.done) return;
+    w.done = true;
+    if (w.io) w.io.disconnect();
+    w.fn();
+  }
+  /* run fn once, when at least `ratio` of el is on screen */
+  function whenSeen(el, ratio, fn) {
+    var w = { el: el, ratio: ratio, fn: fn, done: false, io: null };
+    watchers.push(w);
+    if (hasIO) {
+      w.io = new IntersectionObserver(function (es) {
+        if (es[es.length - 1].isIntersecting) fire(w);
+      }, { threshold: ratio });
+      w.io.observe(el);
+    }
+  }
+  function sweep() {
+    rv.forEach(function (el) {
+      if (!el.classList.contains("in") && onScreen(el, 0)) {
+        el.classList.add("in");
+        if (reveal) reveal.unobserve(el);
+      }
+    });
+    watchers.forEach(function (w) { if (!w.done && onScreen(w.el, w.ratio)) fire(w); });
+  }
+  var sweepTimer = 0;
+  function sweepSoon(ms) { window.clearTimeout(sweepTimer); sweepTimer = window.setTimeout(sweep, ms); }
+  window.addEventListener("load", function () { sweep(); sweepSoon(400); });
+  window.addEventListener("pageshow", function () { sweepSoon(50); });
+  window.addEventListener("scroll", function () { sweepSoon(120); }, { passive: true });
 
   /* chip sounds: square waves, silent until the SFX switch is on */
   var sfxOn = load("cx-sfx") === "on", AC = null;
@@ -1381,30 +1424,24 @@ footer p + p { margin-top: 4px; }
       var n = parseInt(el.getAttribute("data-count"), 10);
       if (!(n > 0)) return;
       el.textContent = "0";
-      var io = new IntersectionObserver(function (es) {
-        if (!es[es.length - 1].isIntersecting) return;
-        io.disconnect();
+      whenSeen(el, 1, function () {
         var v = 0, id = window.setInterval(function () {
           v++; el.textContent = String(v); sfx("tick");
           if (v >= n) window.clearInterval(id);
         }, 150);
-      }, { threshold: 1 });
-      io.observe(el);
+      });
     });
     var says = $("#says");
     if (says) {
       var full = says.textContent;
       says.setAttribute("aria-label", full);
       says.textContent = "";
-      var typer = new IntersectionObserver(function (es) {
-        if (!es[es.length - 1].isIntersecting) return;
-        typer.disconnect();
+      whenSeen(says.parentNode, 0.6, function () {
         var i = 0, id = window.setInterval(function () {
           i++; says.textContent = full.slice(0, i);
           if (i >= full.length) window.clearInterval(id);
         }, 32);
-      }, { threshold: 0.6 });
-      typer.observe(says.parentNode);
+      });
     }
   }
 
