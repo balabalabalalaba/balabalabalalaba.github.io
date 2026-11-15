@@ -1314,27 +1314,55 @@ footer p + p { margin-top: 4px; }
     coin: [[988, 0, 0.07], [1319, 0.07, 0.24]],
     win: [[523, 0, 0.09], [659, 0.09, 0.09], [784, 0.18, 0.09], [1047, 0.27, 0.32]]
   };
+  /* Browsers only let a page start sound from a click, tap or key press. A hover or a
+     count-up that comes first leaves the audio context suspended, and Safari also
+     parks it as "interrupted" after the tab sits in the background. So: wake the
+     context on every press, and drop a sound that cannot play now rather than
+     queueing it to burst out later. */
+  function audio() {
+    if (!AC) {
+      var Ctor = window.AudioContext || window.webkitAudioContext;
+      if (!Ctor) return null;
+      AC = new Ctor();
+    }
+    return AC;
+  }
+  function wake() {
+    var ac = audio();
+    if (ac && ac.state !== "running" && ac.state !== "closed") {
+      var p = ac.resume();
+      if (p && p.catch) p.catch(function () {});
+      return p;
+    }
+    return null;
+  }
+  function play(name) {
+    var t0 = AC.currentTime + 0.01, notes = TUNES[name] || TUNES.tick;
+    notes.forEach(function (n) {
+      var o = AC.createOscillator(), a = AC.createGain();
+      o.type = "square";
+      o.frequency.setValueAtTime(n[0], t0 + n[1]);
+      a.gain.setValueAtTime(0.035, t0 + n[1]);
+      a.gain.exponentialRampToValueAtTime(0.0001, t0 + n[1] + n[2]);
+      o.connect(a); a.connect(AC.destination);
+      o.start(t0 + n[1]); o.stop(t0 + n[1] + n[2] + 0.02);
+    });
+  }
   function sfx(name) {
     if (!sfxOn) return;
     try {
-      if (!AC) {
-        var Ctor = window.AudioContext || window.webkitAudioContext;
-        if (!Ctor) return;
-        AC = new Ctor();
-      }
-      if (AC.state === "suspended") AC.resume();
-      var t0 = AC.currentTime + 0.01, notes = TUNES[name] || TUNES.tick;
-      notes.forEach(function (n) {
-        var o = AC.createOscillator(), a = AC.createGain();
-        o.type = "square";
-        o.frequency.setValueAtTime(n[0], t0 + n[1]);
-        a.gain.setValueAtTime(0.035, t0 + n[1]);
-        a.gain.exponentialRampToValueAtTime(0.0001, t0 + n[1] + n[2]);
-        o.connect(a); a.connect(AC.destination);
-        o.start(t0 + n[1]); o.stop(t0 + n[1] + n[2] + 0.02);
-      });
+      if (!audio()) return;
+      if (AC.state === "running") { play(name); return; }
+      var asked = Date.now(), p = wake();
+      if (p && p.then) p.then(function () {
+        // a press wakes it within a few milliseconds; anything later is stale
+        if (AC.state === "running" && Date.now() - asked < 250) play(name);
+      }, function () {});
     } catch (e) {}
   }
+  ["pointerdown", "touchend", "keydown"].forEach(function (type) {
+    document.addEventListener(type, function () { if (sfxOn) { try { wake(); } catch (e) {} } }, { capture: true, passive: true });
+  });
 
   /* toast */
   var toastEl = $("#toast"), toastTimer = 0;
