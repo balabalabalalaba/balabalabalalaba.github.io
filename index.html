@@ -3122,27 +3122,70 @@ footer p + p { margin-top: 4px; }
 })();
 </script>
 <script>
-/* Visitor counter. Runs only on the GitHub Pages site, counts each browser once,
-   and stays hidden if the counting service cannot be reached. */
+/* Visitor counter. Runs only on the GitHub Pages site and counts each browser once.
+   The free counting service is often slow or down, so each request gives up after
+   a few seconds and is tried once more, and the last number this browser saw is
+   shown straight away. A first-time visitor sees nothing until the service answers. */
 (function () {
   "use strict";
   var box = document.getElementById("visits"), out = document.getElementById("visits-num");
   if (!box || !out || !window.fetch || location.hostname !== "balabalabalalaba.github.io") return;
-  var seen = false;
-  try { seen = window.localStorage.getItem("cx-counted") === "1"; } catch (e) {}
-  var url = "https://abacus.jasoncameron.dev/" + (seen ? "get" : "hit") + "/balabalabalalaba.github.io/visitors";
-  fetch(url).then(function (r) {
-    if (!r.ok) throw new Error("counter unavailable");
-    return r.json();
-  }).then(function (d) {
-    var n = Number(d && d.value);
-    if (!isFinite(n) || n < 0) throw new Error("bad count");
-    var t = String(Math.floor(n));
+  var BASE = "https://abacus.jasoncameron.dev/", KEY = "balabalabalalaba.github.io/visitors";
+  var TIMEOUT_MS = 6000, RETRY_DELAY_MS = 1500;
+
+  function load(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  function save(k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
+
+  var shown = -1;
+  function show(n) {
+    n = Math.floor(n);
+    if (n <= shown) return;            // never step the badge backwards
+    shown = n;
+    var t = String(n);
     while (t.length < 6) t = "0" + t;
     out.textContent = t;
     box.hidden = false;
-    if (!seen) { try { window.localStorage.setItem("cx-counted", "1"); } catch (e) {} }
-  }).catch(function () { /* leave the badge hidden */ });
+  }
+
+  var seen = load("cx-counted") === "1";
+  var cached = Number(load("cx-visits"));
+  if (cached > 0 && isFinite(cached)) show(cached);
+
+  function ask(op) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, TIMEOUT_MS);
+    return fetch(BASE + op + "/" + KEY, ctrl ? { signal: ctrl.signal } : undefined)
+      .then(function (r) {
+        if (!r.ok) throw new Error("counter unavailable");
+        return r.json();
+      })
+      .then(function (d) {
+        var n = Number(d && d.value);
+        if (!isFinite(n) || n < 0) throw new Error("bad count");
+        return n;
+      })
+      .finally(function () { clearTimeout(timer); });
+  }
+
+  function wait(ms) { return new Promise(function (res) { setTimeout(res, ms); }); }
+
+  // A first-time visitor is counted with "hit". If that fails, the retry only reads
+  // the count ("get"): a timed-out hit may still have landed, and counting twice is
+  // worse than missing one. The browser is marked as counted only after a hit succeeds,
+  // so a missed visitor is counted on their next visit.
+  var first = seen ? "get" : "hit";
+  ask(first)
+    .then(function (n) { return { n: n, counted: first === "hit" }; })
+    .catch(function () {
+      return wait(RETRY_DELAY_MS).then(function () { return ask("get"); })
+        .then(function (n) { return { n: n, counted: false }; });
+    })
+    .then(function (r) {
+      show(r.n);
+      save("cx-visits", String(Math.floor(r.n)));
+      if (r.counted) save("cx-counted", "1");
+    })
+    .catch(function () { /* keep the cached number, or stay hidden without one */ });
 })();
 </script>
 </body>
